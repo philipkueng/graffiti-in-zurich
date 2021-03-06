@@ -2,7 +2,7 @@ const fsWrite = require('fs');
 const fs = require('fs').promises;
 const fetch = require('node-fetch');
 
-const FROM_DATE = 2015;
+const FROM_DATE = 2018;
 const TO_DATE = 2020;
 
 (async () => {
@@ -49,11 +49,10 @@ async function getReverseGeocodesByYear(coordinates) {
       } else {
         reverseGeocodesByYear.push({ year: requestYear, collection: [normalizedData] });
       }
+      counter++;
+      console.log(`${counter} of ${total}`)
     }
-    counter++;
-    console.log(`${counter} of ${total}`)
   }
-  console.log(reverseGeocodesByYear);
   return reverseGeocodesByYear;
 }
 
