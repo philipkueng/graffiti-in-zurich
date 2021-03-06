@@ -8,7 +8,13 @@ const fs = require('fs').promises;
     let frequencyByYear = getFrequencyByYear(rawData);
     let frequencyByDistrict = getFrequencyByDistrict(rawData);
     report += getFrequencyByYearReport(frequencyByYear);
+    report += "```json\n"
+    report += JSON.stringify(frequencyByYear);
+    report += "\n```\n"
     report += getFrequencyByDistrictReport(frequencyByDistrict);
+    report += "```json\n"
+    report += JSON.stringify(frequencyByDistrict);
+    report += "\n```\n"
     writeData(report);
   } catch (e) {
     console.log(e)
