@@ -21,7 +21,7 @@ const TO_DATE = 2020;
 async function getCoordinates(data) {
   let coordinates = [];
   data.forEach(feature => {
-    coordinates.push({ lon: feature.geometry.coordinates[0], lat: feature.geometry.coordinates[1], requestDate: getDate(feature.properties.requested_datetime) })
+    coordinates.push({ lon: feature.geometry.coordinates[0], lat: feature.geometry.coordinates[1], requestedDate: getDate(feature.properties.requested_datetime) })
   });
   return coordinates;
 }
@@ -37,17 +37,17 @@ async function getReverseGeocodesByYear(coordinates) {
   let counter = 0;
   let total = getTotalCoordinatesByTimeframe(coordinates, FROM_DATE, TO_DATE);
   for (const coordinate of coordinates) {
-    let { lon, lat, requestDate } = coordinate;
-    let requestYear = requestDate.getFullYear();
-    if (requestYear >= FROM_DATE && requestYear <= TO_DATE) {
+    let { lon, lat, requestedDate } = coordinate;
+    let requestedYear = requestedDate.getFullYear();
+    if (requestedYear >= FROM_DATE && requestedYear <= TO_DATE) {
       let reverseGeocode = await getCoordinateInfo(lon, lat);
       let properties = reverseGeocode.features[0].properties;
       let normalizedData = getNormalizedData(properties);
-      let existingYear = reverseGeocodesByYear.find(item => item.year === requestYear);
+      let existingYear = reverseGeocodesByYear.find(item => item.year === requestedYear);
       if (existingYear) {
         existingYear.collection.push(normalizedData);
       } else {
-        reverseGeocodesByYear.push({ year: requestYear, collection: [normalizedData] });
+        reverseGeocodesByYear.push({ year: requestedYear, collection: [normalizedData] });
       }
       counter++;
       console.log(`${counter} of ${total}`)
@@ -205,8 +205,8 @@ function writeData(data) {
 function getTotalCoordinatesByTimeframe(coordinates, fromDate, toDate) {
   let counter = 0;
   coordinates.forEach(coordinate => {
-    let requestYear = coordinate.requestDate.getFullYear();
-    if (requestYear >= FROM_DATE && requestYear <= TO_DATE) {
+    let requestedYear = coordinate.requestedDate.getFullYear();
+    if (requestedYear >= FROM_DATE && requestedYear <= TO_DATE) {
       counter++;
     }
   })
