@@ -19,6 +19,8 @@ This is a school project for the subject "Visual Storytelling" in my degree for 
 
 The data until mid Feburar 2021 will be included in the file `./graffiti-data/data/data.json`. Newer data can be requested [on the website of Stadt Zurich/züri-wie-neu](https://www.stadt-zuerich.ch/geodaten/download/Zueri_wie_neu?format=10009) via E-Mail. Download the data as `json` and replace it in the `data.json` file.
 
+[to the top](#table-of-contents)
+
 ### Process data
 
 To get the processedData, follow those steps:
@@ -26,6 +28,8 @@ To get the processedData, follow those steps:
 - Run `npm i` to install the dependencies
 - Run `node index.js` to start the process
 - The processed data will be found in the folder `graffiti-in-zurich/graffiti-data/data/processedData.json`
+
+[to the top](#table-of-contents)
 
 ### Methodology
 
@@ -35,6 +39,7 @@ The data provided by züri-wie-neu contains all kind of service codes. From `Abf
 
 Due to those circumstances the data will be filtered by the function `getDataFilteredByGraffiti(data)` before continuing. The function will filter the following properites `service_code`, `service_notice`, `title`, `description` and `service_name` by the value `graffiti` and then return the filtered data. 
 
+[to the top](#table-of-contents)
 
 #### Get coordinates from data
 
@@ -63,6 +68,7 @@ The `json` above is a striped back example of a `features`-array entry in the `g
 
 To note here: The date property in the data provided by züri-wie-neu is formatted like this `2021032112030303` and will be rearranged with the function `getDate(dateString)`, which splits the string into the components `year`, `month`, `day`, `hour`, and `minute` and retuned as a `Date`-object.
 
+[to the top](#table-of-contents)
 
 #### Sort by year and reverse geocodes
 
@@ -111,6 +117,10 @@ The function then returns an array as following:
 
 Those information will then be written down in the file `graffiti-data/data/processedData.json`
 
+[to the top](#table-of-contents)
+
 ## Website 
 
 ### tbd
+
+[to the top](#table-of-contents)
