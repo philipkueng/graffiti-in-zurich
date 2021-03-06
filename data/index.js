@@ -2,26 +2,26 @@ const fsWrite = require('fs');
 const fs = require('fs').promises;
 const fetch = require('node-fetch');
 
+const FROM_DATE = 2015;
+const TO_DATE = 2020;
+
 (async () => {
   try {
     let rawData = await getRawData('./data/data.json');
-    let data = filterDataByGraffiti(rawData);
-    let coordinates = await getCoordinates(data);
-    // coordinates = coordinates.slice(0, 5);
-    let infos = await getReverseGeocodes(coordinates);
-
-    console.log(infos);
-
-    await writeData(infos);
+    let filteredData = getDataFilteredByGraffiti(rawData);
+    let coordinates = await getCoordinates(filteredData);
+    // coordinates = coordinates.slice(0, 3);
+    let reverseGeocodesByYear = await getReverseGeocodesByYear(coordinates);
+    writeData(reverseGeocodesByYear);
   } catch (e) {
-    // Deal with the fact the chain failed
+    console.log(e)
   }
 })();
 
 async function getCoordinates(data) {
   let coordinates = [];
   data.forEach(feature => {
-    coordinates.push({ lon: feature.geometry.coordinates[0], lat: feature.geometry.coordinates[1] })
+    coordinates.push({ lon: feature.geometry.coordinates[0], lat: feature.geometry.coordinates[1], requestDate: getDate(feature.properties.requested_datetime) })
   });
   return coordinates;
 }
@@ -32,20 +32,29 @@ async function getCoordinateInfo(lon, lat) {
   return data;
 }
 
-async function getReverseGeocodes(coordinates) {
-  let infos = [];
+async function getReverseGeocodesByYear(coordinates) {
+  let reverseGeocodesByYear = [];
   let counter = 0;
-  let total = coordinates.length;
-
+  let total = getTotalCoordinatesByTimeframe(coordinates, FROM_DATE, TO_DATE);
   for (const coordinate of coordinates) {
-    let { lon, lat } = coordinate;
-    const info = await getCoordinateInfo(lon, lat);
-    let properties = info.features[0].properties;
-    infos.push(getNormalizedData(properties));
+    let { lon, lat, requestDate } = coordinate;
+    let requestYear = requestDate.getFullYear();
+    if (requestYear >= FROM_DATE && requestYear <= TO_DATE) {
+      let reverseGeocode = await getCoordinateInfo(lon, lat);
+      let properties = reverseGeocode.features[0].properties;
+      let normalizedData = getNormalizedData(properties);
+      let existingYear = reverseGeocodesByYear.find(item => item.year === requestYear);
+      if (existingYear) {
+        existingYear.collection.push(normalizedData);
+      } else {
+        reverseGeocodesByYear.push({ year: requestYear, collection: [normalizedData] });
+      }
+    }
     counter++;
     console.log(`${counter} of ${total}`)
   }
-  return infos;
+  console.log(reverseGeocodesByYear);
+  return reverseGeocodesByYear;
 }
 
 async function getRawData(path) {
@@ -53,7 +62,7 @@ async function getRawData(path) {
   return JSON.parse(data);
 }
 
-function filterDataByGraffiti(data) {
+function getDataFilteredByGraffiti(data) {
   return data.features.filter(feature => feature.properties.service_code === "Graffiti" || feature.properties.detail.includes("Graffiti") || feature.properties.title.includes("Graffiti") || feature.properties.description.includes("Graffiti") || feature.properties.service_name.includes("Graffiti"));
 }
 
@@ -177,6 +186,15 @@ function getNormalizedData(properties) {
   return { district, zip }
 }
 
+function getDate(dateString) {
+  var year = dateString.substring(0, 4);
+  var month = dateString.substring(4, 6);
+  var day = dateString.substring(6, 8);
+  var hour = dateString.substring(8, 10);
+  var minute = dateString.substring(10, 12);
+  return new Date(year, month, day, hour, minute);
+}
+
 function writeData(data) {
   try {
     fsWrite.writeFileSync('./data/processedData.json', JSON.stringify(data));
@@ -185,3 +203,13 @@ function writeData(data) {
   }
 }
 
+function getTotalCoordinatesByTimeframe(coordinates, fromDate, toDate) {
+  let counter = 0;
+  coordinates.forEach(coordinate => {
+    let requestYear = coordinate.requestDate.getFullYear();
+    if (requestYear >= FROM_DATE && requestYear <= TO_DATE) {
+      counter++;
+    }
+  })
+  return counter;
+}
