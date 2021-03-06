@@ -7,9 +7,12 @@ This is a school project for the subject "Visual Storytelling" in my degree for 
   1.1. [Used data](#used-data)  
   1.2. [Process data](#process-data)  
   1.3. [Methodology](#methodology)  
-    1.3.1 [Filter the data](#filter-the-data)  
-    1.3.2 [Get coordinates from data](#get-coordinates-from-data)  
-    1.3.3 [Sort by year and reverse geocodes](#sort-by-year-and-reverse-geocodes)  
+    1.3.1. [Filter the data](#filter-the-data)  
+    1.3.2. [Get coordinates from data](#get-coordinates-from-data)  
+    1.3.3. [Sort by year and reverse geocodes](#sort-by-year-and-reverse-geocodes)  
+  1.4. [Report](#report)  
+    1.4.1. [Frequency by year](#frequency-by-year)  
+    1.4.2. [Frequency by district](#frequency-by-district)  
 2. [Website](#website)  
   2.1 [tbd](#tbd)  
 
@@ -28,6 +31,8 @@ To get the processedData, follow those steps:
 - Run `npm i` to install the dependencies
 - Run `node index.js` to start the process
 - The processed data will be found in the folder `graffiti-in-zurich/graffiti-data/data/processedData.json`
+- To get a report (frequency by year and by district) run `node generateReport.js`
+- The file `graffiti-in-zurich/graffiti-data/data/report.md` will list the results and provide the `json` data
 
 [to the top](#table-of-contents)
 
@@ -115,6 +120,39 @@ The function then returns an array as following:
 ```
 
 Those information will then be written down in the file `graffiti-data/data/processedData.json`
+
+[to the top](#table-of-contents)
+
+### Report
+
+This is a feature that will list you any details found in the data in form of a markdown-file. Currently there are two stats that are being processed: Frequency by year and frequency by district.
+
+#### Frequency by year
+
+This will list each `year`, sorted by it's `totalReports` (top to bottom) and will provide the `json` to implement to implement in other projects. The `json` will be structured as following:
+
+```json
+[
+  {"year": 2020, "totalReports": 344}
+]
+```
+
+[to the top](#table-of-contents)
+
+#### Frequency by district
+
+This will list each `district` of each `year` provided, sorted top to bottom by the property `totalReports`. The `json` will be structured as following:
+
+```json
+[
+  {
+    "year": 2020,
+    "districts": [
+      {"name": "Kreis 1", "totalReports": 82}
+    ]
+  }
+]
+```
 
 [to the top](#table-of-contents)
 
