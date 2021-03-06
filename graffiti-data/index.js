@@ -26,7 +26,7 @@ async function getCoordinates(data) {
   return coordinates;
 }
 
-async function getCoordinateInfo(lon, lat) {
+async function getReverseGeocode(lon, lat) {
   const response = await fetch(`https://photon.komoot.io/reverse?lon=${lon}&lat=${lat}`);
   const data = await response.json();
   return data;
@@ -34,13 +34,17 @@ async function getCoordinateInfo(lon, lat) {
 
 async function getReverseGeocodesByYear(coordinates) {
   let reverseGeocodesByYear = [];
+
+  // not relevant to the process, simply to get visual feedback in the console of the process
   let counter = 0;
   let total = getTotalCoordinatesByTimeframe(coordinates, FROM_DATE, TO_DATE);
+  //
+
   for (const coordinate of coordinates) {
     let { lon, lat, requestedDate } = coordinate;
     let requestedYear = requestedDate.getFullYear();
     if (requestedYear >= FROM_DATE && requestedYear <= TO_DATE) {
-      let reverseGeocode = await getCoordinateInfo(lon, lat);
+      let reverseGeocode = await getReverseGeocode(lon, lat);
       let properties = reverseGeocode.features[0].properties;
       let normalizedData = getNormalizedData(properties);
       let existingYear = reverseGeocodesByYear.find(item => item.year === requestedYear);
@@ -49,8 +53,11 @@ async function getReverseGeocodesByYear(coordinates) {
       } else {
         reverseGeocodesByYear.push({ year: requestedYear, collection: [normalizedData] });
       }
+
+      // this is not relevant to to process either, it helps seeing the process in the console
       counter++;
       console.log(`${counter} of ${total}`)
+      //
     }
   }
   return reverseGeocodesByYear;
