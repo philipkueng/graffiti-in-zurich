@@ -111,7 +111,6 @@ The function then returns an array as following:
       }
     ]
   }
-
 ]
 ```
 
