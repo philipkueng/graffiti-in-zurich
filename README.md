@@ -2,7 +2,7 @@
 
 This is a school project for the subject "Visual Storytelling" in my degree for Interaction Design. The idea of this project is to create a visualization about the reported Graffiti in Zurich from the service "züri-wie-neu" in between the years 2018 and 2020. 
 
-# Table of content
+## Table of content
 - Data
 -- Used data
 -- Process data
@@ -31,4 +31,30 @@ Due to those circumstances the data will be filtered by all [those properties](h
 
 
 ##### Get coordinates from data
+
+```json
+{
+  "geometry" : {
+    "coordinates" : [ 8.4842263013, 47.3740377357 ]
+  },
+  "properties" : {
+    "requested_datetime" : "20130314151615",
+  }
+}
+```
+
+The `json` above is a striped back example of a `features`-array entry in the `graffiti-data/data/data.json` file and shows the used properties only. In the function `getCoordinates(data)`, the coordinates of the property `geometry` and the `requestedDate` from the `properties` object will be formed into a new object and returned as following: 
+
+```json
+[
+  {
+    "lon": 1,
+    "lat": 2,
+    "requestedDate": "2020-03-21-12-03Z"
+  }
+]
+```
+
+To note here: The date property in the data provided by züri-wie-neu is formatted like this `2021032112030303` and will be rearranged with the function `getDate(dateString)`, which splits the string into the components `year`, `month`, `day`, `hour`, and `minute` and retuned as a `Date`-object.
+
 
