@@ -62,7 +62,7 @@ async function getRawData(path) {
 }
 
 function getDataFilteredByGraffiti(data) {
-  return data.features.filter(feature => feature.properties.service_code === "Graffiti" || feature.properties.detail.includes("Graffiti") || feature.properties.title.includes("Graffiti") || feature.properties.description.includes("Graffiti") || feature.properties.service_name.includes("Graffiti"));
+  return data.features.filter(feature => feature.properties.service_code.toLowerCase() === "graffiti" || feature.properties.detail.toLowerCase().includes("graffiti") || feature.properties.title.toLowerCase().includes("graffiti") || feature.properties.description.toLowerCase().includes("graffiti") || feature.properties.service_name.toLowerCase().includes("graffiti"));
 }
 
 function getNormalizedData(properties) {
