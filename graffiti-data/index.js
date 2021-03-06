@@ -46,7 +46,7 @@ async function getReverseGeocodesByYear(coordinates) {
     if (requestedYear >= FROM_DATE && requestedYear <= TO_DATE) {
       let reverseGeocode = await getReverseGeocode(lon, lat);
       let properties = reverseGeocode.features[0].properties;
-      let normalizedData = getNormalizedData(properties);
+      let normalizedData = getNormalizedData(properties, requestedDate);
       let existingYear = reverseGeocodesByYear.find(item => item.year === requestedYear);
       if (existingYear) {
         existingYear.collection.push(normalizedData);
@@ -72,7 +72,7 @@ function getDataFilteredByGraffiti(data) {
   return data.features.filter(feature => feature.properties.service_code.toLowerCase() === "graffiti" || feature.properties.detail.toLowerCase().includes("graffiti") || feature.properties.title.toLowerCase().includes("graffiti") || feature.properties.description.toLowerCase().includes("graffiti") || feature.properties.service_name.toLowerCase().includes("graffiti"));
 }
 
-function getNormalizedData(properties) {
+function getNormalizedData(properties, requestedDate) {
   let zip = properties.postcode;
   let district = properties.district;
 
@@ -189,7 +189,7 @@ function getNormalizedData(properties) {
         district = properties
     }
   }
-  return { district, zip }
+  return { district, zip, requestedDate }
 }
 
 function getDate(dateString) {

@@ -61,7 +61,7 @@ The `json` above is a striped back example of a `features`-array entry in the `g
   {
     "lon": 1,
     "lat": 2,
-    "requestedDate": "2020-03-21-12-03Z"
+    "requestedDate": "2020-03-21T08:36:00.000Z"
   }
 ]
 ```
@@ -93,7 +93,7 @@ The displayed properties are, again, striped back to the properties that are use
 }
 ```
 
-Those information will then be normalized in the function `getNormalizedData(data)`. This process is not based on a "scientific" process and might have a lot of space for improvement. Further information how the `district` and the `zip`-code is set will be found [within the function](https://github.com/philipkueng/graffiti-in-zurich/blob/37ff3b4559fbe7a7ad853ee072802644c5f07583/graffiti-data/index.js#L75). 
+Those information will then be normalized in the function `getNormalizedData(data, requestedData)`. This process is not based on a "scientific" process and might have a lot of space for improvement. Further information how the `district` and the `zip`-code is set will be found [within the function](https://github.com/philipkueng/graffiti-in-zurich/blob/37ff3b4559fbe7a7ad853ee072802644c5f07583/graffiti-data/index.js#L75). 
 
 After the information is normalized, it will be added in an array and to it's related year.
 
@@ -107,7 +107,7 @@ The function then returns an array as following:
       {
         "district": "Kreis 1",
         "zip": "8001",
-        "requestedDate": "2021-03-21-12-03Z"
+        "requestedDate": "2020-03-21T08:36:00.000Z"
       }
     ]
   }
