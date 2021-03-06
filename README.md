@@ -2,16 +2,16 @@
 
 This is a school project for the subject "Visual Storytelling" in my degree for Interaction Design. The idea of this project is to create a visualization about the reported Graffiti in Zurich from the service "züri-wie-neu" in between the years 2018 and 2020. 
 
-## Table of content
-1. [Data](#data)
-  1.1. [Used data](#used-data)
-  1.2. [Process data](#process-data)
-  1.3. [Methodology](#methodology)
-    1.3.1 [Filter the data](#filter-the-data)
-    1.3.2 [Get coordinates from data](#get-coordinates-from-data)
-    1.3.3 [Sort by year and reverse geocodes](#sort-by-year-and-reverse-geocodes)
-2. [Website](#website)
-  2.1 [tbd](#tbd)
+## Table of contents
+1. [Data](#data)  
+  1.1. [Used data](#used-data)  
+  1.2. [Process data](#process-data)  
+  1.3. [Methodology](#methodology)  
+    1.3.1 [Filter the data](#filter-the-data)  
+    1.3.2 [Get coordinates from data](#get-coordinates-from-data)  
+    1.3.3 [Sort by year and reverse geocodes](#sort-by-year-and-reverse-geocodes)  
+2. [Website](#website)  
+  2.1 [tbd](#tbd)  
 
 ## Data 
 
