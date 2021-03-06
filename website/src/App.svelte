@@ -29,12 +29,12 @@
 </style>
 
 <main>
-  <div style="height: 700px">
+  <div style="height: 100vh">
     <h1 style="margin-top: 180px; margin-bottom: 20px;">Graffiti in Zurich</h1>
     <h1 style="margin-top: 12px;">2018 - 2020</h1>
     <h3>by Philip Küng, sfgb:b IAD11</h3>
   </div>
-  <div style="height: 700px; border-top: 1px solid black;">
+  <div style="height: 100vh; border-top: 1px solid black;">
     <div class="animation" style="position: relative; margin-top: 300px">
       {#each Array(totalReports) as _, row}i{/each}
     </div>
@@ -44,7 +44,7 @@
       reports in the city of zurich according to graffiti
     </div>
   </div>
-  <div style="height: 700px; border-top: 1px solid black;">
+  <div style="height: 100vh; border-top: 1px solid black;">
     <div class="animation" style="position: relative; margin-top: 0px">
       {#each statisticsByYear as stat}
         <h1>{stat.year}</h1>
@@ -56,7 +56,7 @@
       reports).
     </div>
   </div>
-  <div style="height: 700px; border-top: 1px solid black;">
+  <div style="height: 100vh; border-top: 1px solid black;">
     <h1>2020</h1>
     <div>
       Where you can see that Kreis 1 has been the most active when it comes to
