@@ -1,5 +1,6 @@
 const fsWrite = require('fs');
 const fs = require('fs').promises;
+const zurich_districts = ["Kreis 1", "Kreis 2", "Kreis 3", "Kreis 4", "Kreis 5", "Kreis 6", "Kreis 7", "Kreis 8", "Kreis 9", "Kreis 10", , "Kreis 11", "Kreis 12"];
 
 (async () => {
   try {
@@ -7,6 +8,7 @@ const fs = require('fs').promises;
     let rawData = await getRawData('./data/processedData.json');
     let frequencyByYear = getFrequencyByYear(rawData);
     let frequencyByDistrict = getFrequencyByDistrict(rawData);
+    let totalInfo = getFrequencyByYearAndDistrictWithCoordinates(rawData);
     report += getFrequencyByYearReport(frequencyByYear);
     report += "```json\n"
     report += JSON.stringify(frequencyByYear);
@@ -14,6 +16,9 @@ const fs = require('fs').promises;
     report += getFrequencyByDistrictReport(frequencyByDistrict);
     report += "```json\n"
     report += JSON.stringify(frequencyByDistrict);
+    report += "\n```\n"
+    report += "```json\n"
+    report += JSON.stringify(totalInfo);
     report += "\n```\n"
     writeData(report);
   } catch (e) {
@@ -78,7 +83,7 @@ function getFrequencyByDistrict(data) {
     feature.collection.forEach(info => {
       let district = existingYear.districts.find(dis => dis.name === info.district);
       if (!district) {
-        console.log(`There is something weird going on with ${info}`);
+        console.log(`There is something weird going on with ${JSON.stringify(info)}`);
       }
       district.totalReports += 1;
     })
@@ -105,6 +110,33 @@ function getFrequencyByDistrictReport(data) {
     })
   })
   return report;
+}
+
+function getFrequencyByYearAndDistrictWithCoordinates(data) {
+  let processedData = [];
+  data.forEach(feature => {
+    if (feature) {
+      let year = { year: feature.year, totalReports: 0, districts: [] };
+
+      zurich_districts.forEach(districtName => {
+        let district = feature.collection.filter(entry => entry.district === districtName)
+        let districtTotalReports = district.length;
+        year.totalReports += districtTotalReports;
+        let coordinates = [];
+        district.map(districtInfo => {
+          coordinates = [...coordinates, districtInfo.coordinates]
+        })
+
+        year.districts.push({
+          district: districtName,
+          totalReports: districtTotalReports,
+          coordinates
+        })
+      })
+      processedData = [...processedData, year];
+    }
+  })
+  return processedData;
 }
 
 async function getRawData(path) {

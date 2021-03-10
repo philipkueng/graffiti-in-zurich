@@ -118,7 +118,7 @@ function getNormalizedData(properties, requestedDate) {
         zip = "8050";
         break;
       default:
-        zip = undefined;
+        zip = "NO ZIP CODE AVAILABLE";
         break;
     }
   }
@@ -186,7 +186,7 @@ function getNormalizedData(properties, requestedDate) {
         district = properties.locality === "Hirzenbach" ? "Kreis 11" : "Kreis 12";
         break;
       default:
-        district = properties
+        district = "NO DISTRICT AVAILABLE"
     }
   }
   return { district, zip, requestedDate }
