@@ -1,6 +1,5 @@
 <script>
-  export let statisticsByYear;
-  export let statisticsByDistrict;
+  export let data;
 
   let totalReports = 0;
   statisticsByYear.map(year => (totalReports += year.totalReports));
@@ -30,44 +29,46 @@
 
 <main>
   <div style="height: 100vh">
-    <h1 style="margin-top: 180px; margin-bottom: 20px;">Graffiti in Zurich</h1>
+    <h1 style="margin-top: 180px; margin-bottom: 20px;">Graffiti in Zürich</h1>
     <h1 style="margin-top: 12px;">2018 - 2020</h1>
-    <h3>by Philip Küng, sfgb:b IAD11</h3>
+    <h3>von Philip Küng, sfgb:b IAD11</h3>
   </div>
   <div style="height: 100vh; border-top: 1px solid black;">
     <div class="animation" style="position: relative; margin-top: 300px">
-      {#each Array(totalReports) as _, row}i{/each}
+      {#each Array(totalReports) as _, row}o{/each}
     </div>
     <div>
-      during the years 2018, 2019 and 2020 there have been a total of
+      In den Jahren 2018, 2019 und 2020 sind, gemäss der Dienststelle
+      <a href="#todo">züri-wie-neu</a>
+      , insgesammt
       <span style="font-weight: bold;">{totalReports}</span>
-      reports in the city of zurich according to graffiti
+      Meldungen bezüglich Graffiti eingegangen.
     </div>
   </div>
   <div style="height: 100vh; border-top: 1px solid black;">
     <div class="animation" style="position: relative; margin-top: 0px">
       {#each statisticsByYear as stat}
         <h1>{stat.year}</h1>
-        {#each Array(stat.totalReports) as _, row}i{/each}
+        {#each Array(stat.totalReports) as _, row}o{/each}
       {/each}
     </div>
     <div>
-      With 2020 being the most actively reported year ({statisticsByYear[0].totalReports}
-      reports).
+      Das Jahr 2020 war mit {statisticsByYear[0].totalReports} Meldungen das
+      aktivste Jahr.
     </div>
   </div>
   <div style="height: 100vh; border-top: 1px solid black;">
     <h1>2020</h1>
     <div>
-      Where you can see that Kreis 1 has been the most active when it comes to
-      reports.
+      Im Kreis 1 wurde Where you can see that Kreis 1 has been the most active
+      when it comes to reports.
     </div>
 
     <div class="animation" style="position: relative; margin-top: 0px">
       {#each statisticsByDistrict[0].districts as district, index}
         {#if index === 0 || index === 1 || index === statisticsByDistrict[0].districts.length - 1}
           <h2>{district.name}</h2>
-          {#each Array(district.totalReports) as _, row}i{/each}
+          {#each Array(district.totalReports) as _, row}o{/each}
         {/if}
       {/each}
     </div>
@@ -87,7 +88,7 @@
         {#each stats.districts as district, index}
           {#if index === 0 || index === 1 || index === statisticsByDistrict[0].districts.length - 1}
             <h3>{district.name}</h3>
-            {#each Array(district.totalReports) as _, row}i{/each}
+            {#each Array(district.totalReports) as _, row}o{/each}
           {/if}
         {/each}
       {/each}
