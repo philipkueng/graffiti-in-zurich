@@ -10,7 +10,7 @@ const TO_DATE = 2020;
     let rawData = await getRawData('./data/data.json');
     let filteredData = getDataFilteredByGraffiti(rawData);
     let coordinates = await getCoordinates(filteredData);
-    // coordinates = coordinates.slice(0, 3);
+    //coordinates = coordinates.slice(0, 3);
     let reverseGeocodesByYear = await getReverseGeocodesByYear(coordinates);
     writeData(reverseGeocodesByYear);
   } catch (e) {
@@ -49,9 +49,9 @@ async function getReverseGeocodesByYear(coordinates) {
       let normalizedData = getNormalizedData(properties, requestedDate);
       let existingYear = reverseGeocodesByYear.find(item => item.year === requestedYear);
       if (existingYear) {
-        existingYear.collection.push(normalizedData);
+        existingYear.collection = [...existingYear.collection, { ...normalizedData, coordinates: { lon, lat } }];
       } else {
-        reverseGeocodesByYear.push({ year: requestedYear, collection: [normalizedData] });
+        reverseGeocodesByYear = [...reverseGeocodesByYear, { year: requestedYear, collection: [{ ...normalizedData, coordinates: { lon, lat } }] }]
       }
 
       // this is not relevant to to process either, it helps seeing the process in the console
