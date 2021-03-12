@@ -1,7 +1,9 @@
 [
   {
-    "text": "Graffiti in Zuerich",
-    "type": "teaser"
+    "type": "teaser",
+    "header": ".Graffiti in Zuerich",
+    "autor": "Philip Kueng",
+    "organisation": "sfgb:b IAD11"
   },
   {
     "text": "Overview for all years",

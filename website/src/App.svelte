@@ -5,6 +5,7 @@
 
   export let data;
   export let steps;
+  export let resolveImages;
 
   const districtColors = [
     { name: "Kreis 1", color: "yellow" },
@@ -27,7 +28,11 @@
   function getCurrentComponent(index) {
     let component = {};
     let step = steps[index];
-    if (step.type === "horizontal") {
+    if (step.type === "teaser") {
+      component.props = {
+        ...step
+      };
+    } else if (step.type === "horizontal") {
       component.component = HorizontalStackedBar;
       component.props = {
         data,
@@ -44,48 +49,38 @@
     return component;
   }
 
-  function setNewStepIndex() {
-    if (stepIndex > 0) {
-      stepIndex -= 1;
-    }
+  function getTop(component) {
+    return component.component ? "15vh" : 0;
   }
 </script>
 
 <style>
   main {
-    text-align: center;
     padding: 1em;
     max-width: 240px;
     margin: 0 auto;
   }
 
   h1 {
-    color: #ff3e00;
+    font-family: "Antifont";
     text-transform: uppercase;
-    font-size: 4em;
+    font-size: 6em;
     font-weight: 100;
   }
 
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
-  }
   .content-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100vh;
     z-index: -1;
   }
 
   .content-frame {
     position: fixed;
-    top: 15vh;
-    /* background-color: yellow; */
     height: 70%;
     width: 100%;
-    padding: 0 20px;
   }
 
   .step-container {
@@ -98,36 +93,74 @@
     height: 100vh;
     width: 100%;
   }
+  .step-box {
+    background-color: white;
+    padding: 20px;
+    z-index: 9999;
+    box-shadow: 3px 5px 3px grey;
+    border: 0.5px solid grey;
+    margin-top: 10px;
+  }
+
+  .teaser {
+    height: 100vh;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .zueri-flagge {
+    width: 100%;
+    background: linear-gradient(
+      to top right,
+      #268bcc calc(50% - 1px),
+      #268bcc,
+      white calc(50% + 1px)
+    );
+  }
 </style>
 
 <main>
-  <div
-    style="height: 100vh; display: flex; flex-direction: column; align-items:
-    center;">
-    <h1 style="margin-bottom: 10px;">Graffiti in Zürich</h1>
-    <h1 style="margin-top: 10px;">2018 - 2020</h1>
-    <h3>von Philip Küng, sfgb:b IAD11</h3>
-    <img
-      style="height: 50%; width: 50%;"
-      src="https://www.zkb.ch/media/contenthub-immobilien/bilder/content/bilder-stories/ZH_Stadtkreise.img.1557942666008.940.png"
-      alt="" />
-  </div>
-  <div class="content-container" style="height: 100vh;">
-    <div class="content-frame">
-      <svelte:component
-        this={currentComponent.component}
-        {...currentComponent.props} />
+  <div class="content-container">
+    <div class="content-frame" style="top: {getTop(currentComponent)};">
+      {#if !currentComponent.component}
+        <div
+          class="teaser zueri-flagge"
+          use:viewport
+          on:enterViewport={() => (stepIndex = 0)}>
+          <div style="width: 70%;">
+            <h1 style="text-align: center; margin-bottom: 0px">
+              {currentComponent.props.header}
+            </h1>
+            <h4 style="text-align: right;">
+              von
+              <span
+                style="font-family: 'Antifont'; font-size: 25px; margin-left:
+                3px;">
+                {currentComponent.props.autor}
+              </span>
+              , {currentComponent.props.organisation}
+            </h4>
+          </div>
+          <img style="height: 50%; " src={resolveImages('karte.png')} alt="" />
+        </div>
+      {:else}
+        <svelte:component
+          this={currentComponent.component}
+          {...currentComponent.props} />
+      {/if}
     </div>
     <div class="step-container">
       {#each steps as step, index}
         <div
           class="step"
           use:viewport
-          on:enterViewport={() => (stepIndex = index)}
-          on:exitViewport={() => setNewStepIndex()}>
-          <div style="background-color: white: padding: 5px; z-index: 9999;">
-            {step.text}
-          </div>
+          on:enterViewport={() => (stepIndex = index)}>
+          {#if step.text}
+            <div class="step-box">{step.text}</div>
+          {/if}
         </div>
       {/each}
     </div>

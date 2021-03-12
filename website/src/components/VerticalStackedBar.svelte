@@ -1,4 +1,5 @@
 <script>
+  import { fly } from "svelte/transition";
   export let data;
   export let activeYear;
 
@@ -17,6 +18,9 @@
   }
 
   .stacked-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 33%;
   }
 
