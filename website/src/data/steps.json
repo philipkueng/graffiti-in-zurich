@@ -1,14 +1,37 @@
 [
   {
-    "text": "This is the 1st text"
+    "text": "Overview for all years",
+    "type": "vertical",
+    "activeYear": null
   },
   {
-    "text": "This is the 2nd text"
+    "text": "Displaying the vertical stacked bars for 2018",
+    "type": "vertical",
+    "activeYear": 2018
   },
   {
-    "text": "This is the 3rd text"
+    "text": "Displaying the districts for 2018",
+    "type": "horizontal",
+    "activeYear": 2018
   },
   {
-    "text": "This is the 4th text"
+    "text": "Displaying the vertical stacked bars for 2019",
+    "type": "vertical",
+    "activeYear": 2019
+  },
+  {
+    "text": "Displaying the districts for 2019",
+    "type": "horizontal",
+    "activeYear": 2019
+  },
+  {
+    "text": "Displaying the vertical stacked bars for 2020",
+    "type": "vertical",
+    "activeYear": 2020
+  },
+  {
+    "text": "Displaying the districts for 2020",
+    "type": "horizontal",
+    "activeYear": 2020
   }
 ]

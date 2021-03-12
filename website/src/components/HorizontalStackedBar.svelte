@@ -1,18 +1,17 @@
 <script>
-  export let districts;
-  export let totalReports;
+  export let data;
+  export let activeYear;
   export let districtColors;
 
+  let statisticByActiveYear = data.find(entry => entry.year === activeYear);
+  let districts = statisticByActiveYear.districts;
+  let totalReportsYear = statisticByActiveYear.totalReports;
+
   function getWidth(districtTotalReports, totalReports) {
-    console.log(`(100 * ${districtTotalReports}) / ${totalReports})`);
-    console.log((100 * districtTotalReports) / totalReports);
     return (100 * districtTotalReports) / totalReports;
   }
 
   function getColor(districtName) {
-    console.log(districtName);
-    console.log(districtColors);
-
     return districtColors.find(district => district.name === districtName)
       .color;
   }
@@ -30,7 +29,7 @@
 <div class="stacked-bar">
   {#each districts as district}
     <div
-      style="height: 100%; width: {getWidth(district.totalReports, totalReports)}%;
+      style="height: 100%; width: {getWidth(district.totalReports, totalReportsYear)}%;
       background-color: {getColor(district.name)}" />
   {/each}
 </div>

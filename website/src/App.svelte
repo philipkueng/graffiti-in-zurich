@@ -1,6 +1,11 @@
 <script>
   import VerticalStackedBar from "./components/VerticalStackedBar.svelte";
   import HorizontalStackedBar from "./components/HorizontalStackedBar.svelte";
+  import viewport from "./helper/useViewportAction.js";
+
+  export let data;
+  export let steps;
+
   const districtColors = [
     { name: "Kreis 1", color: "yellow" },
     { name: "Kreis 2", color: "red" },
@@ -16,39 +21,40 @@
     { name: "Kreis 12", color: "grey" }
   ];
 
-  export let data;
-  // export let steps;
-  let totalReports = 0;
-  data.map(year => (totalReports += year.totalReports));
+  $: stepIndex = 0;
+  $: currentComponent = getCurrentComponent(stepIndex);
+  $: currentColor = getColor(stepIndex);
 
-  let stepIndex = 1;
+  function getCurrentComponent(index) {
+    let component = {};
+    let step = steps[index];
+    if (step.type === "horizontal") {
+      component.component = HorizontalStackedBar;
+      component.props = {
+        data,
+        activeYear: step.activeYear,
+        districtColors
+      };
+    } else {
+      component.component = VerticalStackedBar;
+      component.props = {
+        data,
+        activeYear: step.activeYear
+      };
+    }
+    return component;
+  }
 
-  let currentComponent;
+  function setNewStepIndex() {
+    if (stepIndex > 0) {
+      stepIndex -= 1;
+    }
+  }
 
-  // function getCurrentDisplay(index) {
-  //   import("./components/VerticalStackedBar.svelte").then(
-  //     res => (currentComponent = res.default)
-  //   );
-  // }
-
-  // function elementInViewport(index) {
-  //   let el = document.querySelectorAll(`.step-${index}`);
-  //   var top = el.offsetTop;
-  //   var left = el.offsetLeft;
-  //   var width = el.offsetWidth;
-  //   var height = el.offsetHeight;
-  //   while (el.offsetParent) {
-  //     el = el.offsetParent;
-  //     top += el.offsetTop;
-  //     left += el.offsetLeft;
-  //   }
-  //   return (
-  //     top >= window.pageYOffset &&
-  //     left >= window.pageXOffset &&
-  //     top + height <= window.pageYOffset + window.innerHeight &&
-  //     left + width <= window.pageXOffset + window.innerWidth
-  //   );
-  // }
+  function getColor(index) {
+    const steps = ["red", "yellow", "green", "violet", "grey"];
+    return steps[index];
+  }
 </script>
 
 <style>
@@ -94,7 +100,7 @@
 
   .step {
     border: 2px solid black;
-    height: 30px;
+    height: 100%;
     width: 50px;
   }
 </style>
@@ -111,70 +117,22 @@
       src="https://www.zkb.ch/media/contenthub-immobilien/bilder/content/bilder-stories/ZH_Stadtkreise.img.1557942666008.940.png"
       alt="" />
   </div>
-  <!-- <div class="content-container" style="height: 100vh;">
+  <div class="content-container" style="height: 100vh;">
     <div class="content-frame">
-      <!-- <svelte:component this={currentComponent} {data} activeYear={false} /> 
-      <div style="height: 50%; width: 50%; background-color: {currentColor};" />
+      <svelte:component
+        this={currentComponent.component}
+        {...currentComponent.props} />
     </div>
     {#each steps as step, index}
       <div class="step-container">
-        <span class="step">{step.text} {elementInViewport(index)}</span>
+        <span
+          class="step"
+          use:viewport
+          on:enterViewport={() => (stepIndex = index)}
+          on:exitViewport={() => setNewStepIndex()}>
+          {step.text}
+        </span>
       </div>
     {/each}
-  </div> -->
-
-  <div
-    style="display: flex; flex-direction: row; height: 100vh; align-items:
-    flex-end;">
-    <VerticalStackedBar {data} />
   </div>
-
-  <div
-    style="display: flex; flex-direction: row; height: 100vh; align-items:
-    flex-end;">
-    <VerticalStackedBar {data} activeYear={2018} />
-  </div>
-  <div
-    style="height: 100vh; display: flex; flex-direction: column;
-    justify-content: center;">
-    <h1>{data[0].year}</h1>
-
-    <HorizontalStackedBar
-      districts={data[0].districts}
-      totalReports={data[0].totalReports}
-      {districtColors} />
-  </div>
-
-  <div
-    style="display: flex; flex-direction: row; height: 100vh; align-items:
-    flex-end;">
-    <VerticalStackedBar {data} activeYear={2018} />
-  </div>
-  <div
-    style="height: 100vh; display: flex; flex-direction: column;
-    justify-content: center;">
-    <h1>{data[1].year}</h1>
-
-    <HorizontalStackedBar
-      districts={data[1].districts}
-      totalReports={data[1].totalReports}
-      {districtColors} />
-  </div>
-
-  <div
-    style="display: flex; flex-direction: row; height: 100vh; align-items:
-    flex-end;">
-    <VerticalStackedBar {data} activeYear={2020} />
-  </div>
-  <div
-    style="height: 100vh; display: flex; flex-direction: column;
-    justify-content: center;">
-    <h1>{data[2].year}</h1>
-
-    <HorizontalStackedBar
-      districts={data[2].districts}
-      totalReports={data[2].totalReports}
-      {districtColors} />
-  </div>
-
 </main>

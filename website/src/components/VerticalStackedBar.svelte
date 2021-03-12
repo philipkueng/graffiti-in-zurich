@@ -1,6 +1,6 @@
 <script>
-  export let activeYear;
   export let data;
+  export let activeYear;
 
   function getColor(loopYear, activeYear) {
     return loopYear === activeYear ? "orange" : "darkgrey";
@@ -9,8 +9,11 @@
 
 <style>
   .stacked-bar-container {
+    width: 100%;
     display: flex;
     flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-around;
   }
 
   .stacked-bar {
