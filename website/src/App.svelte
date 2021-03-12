@@ -1,6 +1,6 @@
 <script>
-  export let data;
-
+  import VerticalStackedBar from "./components/VerticalStackedBar.svelte";
+  import HorizontalStackedBar from "./components/HorizontalStackedBar.svelte";
   const districtColors = [
     { name: "Kreis 1", color: "yellow" },
     { name: "Kreis 2", color: "red" },
@@ -16,16 +16,41 @@
     { name: "Kreis 12", color: "grey" }
   ];
 
+  export let data;
+  export let steps;
   let totalReports = 0;
   data.map(year => (totalReports += year.totalReports));
 
-  function getWidth(districtTotalReports, totalReports) {
-    return (100 * districtTotalReports) / totalReports;
-  }
+  let stepIndex = 1;
 
-  function getColor(districtName) {
-    return districtColors.find(district => district.name === districtName)
-      .color;
+  let currentComponent;
+
+  $: currentColor = red;
+
+  function getCurrentDisplay(index) {
+    import("./components/VerticalStackedBar.svelte").then(
+      res => (currentComponent = res.default)
+    );
+  }
+  getCurrentDisplay(1);
+
+  function elementInViewport(index) {
+    let el = document.querySelectorAll(`.step-${index}`);
+    var top = el.offsetTop;
+    var left = el.offsetLeft;
+    var width = el.offsetWidth;
+    var height = el.offsetHeight;
+    while (el.offsetParent) {
+      el = el.offsetParent;
+      top += el.offsetTop;
+      left += el.offsetLeft;
+    }
+    return (
+      top >= window.pageYOffset &&
+      left >= window.pageXOffset &&
+      top + height <= window.pageYOffset + window.innerHeight &&
+      left + width <= window.pageXOffset + window.innerWidth
+    );
   }
 </script>
 
@@ -49,116 +74,134 @@
       max-width: none;
     }
   }
-
-  .statistics-year {
-    width: 33%;
-  }
-
-  .stacked-bar {
-  }
-
-  .stacked-bar-districts {
-    height: 10%;
+  .content-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .content-frame {
+    position: fixed;
+    top: 15vh;
+    /* background-color: yellow; */
+    height: 70%;
+    width: 100%;
     padding: 0 20px;
+  }
+
+  .step-container {
+    height: 100vh;
+    width: 100%;
+  }
+
+  .step {
+    border: 2px solid black;
+    height: 30px;
+    width: 50px;
   }
 </style>
 
 <main>
-  <div style="height: 100vh">
-    <h1 style="margin-top: 180px; margin-bottom: 20px;">Graffiti in Zürich</h1>
-    <h1 style="margin-top: 12px;">2018 - 2020</h1>
+  <div
+    style="height: 100vh; display: flex; flex-direction: column; align-items:
+    center;">
+    <h1 style="margin-bottom: 10px;">Graffiti in Zürich</h1>
+    <h1 style="margin-top: 10px;">2018 - 2020</h1>
     <h3>von Philip Küng, sfgb:b IAD11</h3>
+    <img
+      style="height: 50%; width: 50%;"
+      src="https://www.zkb.ch/media/contenthub-immobilien/bilder/content/bilder-stories/ZH_Stadtkreise.img.1557942666008.940.png"
+      alt="" />
   </div>
-  <div style="display: flex; flex-direction: row; height: 100vh;">
+  <div class="content-container" style="height: 100vh;">
+    <div class="content-frame">
+      <!-- <svelte:component this={currentComponent} {data} activeYear={false} /> -->
+      <div style="height: 50%; width: 50%; background-color: {currentColor};" />
+    </div>
+    {#each steps as step, index}
+      <div class="step-container">
+        <span class="step">{step.text} {elementInViewport(index)}</span>
+      </div>
+    {/each}
+  </div>
+  <!-- <div
+    style="">
     {#each data as statistic}
       <div class="statistics-year">
-        <div class="stacked-bar">
-          {#each statistic.districts as district}
-            {#each district.coordinates as coordinate}
-              <span
-                style="font-size: 3px; font-weight: bold; display: block;
-                height: 1.5px; color: darkgrey;">
-                {coordinate.lon}, {coordinate.lat}
-              </span>
-            {/each}
-          {/each}
-        </div>
+        <VerticalStackedBar districts={statistic.districts} active={false} />
+        <h3>{statistic.year}</h3>
+      </div>
+    {/each}
+  </div>
+
+  <div
+    style="display: flex; flex-direction: row; height: 100vh; align-items:
+    flex-end;">
+    {#each data as statistic}
+      <div class="statistics-year">
+        <VerticalStackedBar
+          districts={statistic.districts}
+          active={statistic.year === 2018} />
         <h3>{statistic.year}</h3>
       </div>
     {/each}
   </div>
   <div
-    style="height: 100vh; border-top: 1px solid black; display: flex;
-    flex-direction: column; justify-content: center;">
+    style="height: 100vh; display: flex; flex-direction: column;
+    justify-content: center;">
     <h1>{data[0].year}</h1>
-    <div class="stacked-bar-districts">
-      {#each data[0].districts as district}
-        <div
-          style="height: 100%; width: {getWidth(district.totalReports, data[0].totalReports)}%;
-          background-color: {getColor(district.name)}" />
-      {/each}
-    </div>
+
+    <HorizontalStackedBar
+      districts={data[0].districts}
+      totalReports={data[0].totalReports}
+      {districtColors} />
   </div>
-  <div style="display: flex; flex-direction: row; height: 100vh;">
+
+  <div
+    style="display: flex; flex-direction: row; height: 100vh; align-items:
+    flex-end;">
     {#each data as statistic}
       <div class="statistics-year">
-        <div class="stacked-bar">
-          {#each statistic.districts as district}
-            {#each district.coordinates as coordinate}
-              <span
-                style="font-size: 3px; font-weight: bold; display: block;
-                height: 1.5px; color: orange;">
-                {coordinate.lon}, {coordinate.lat}
-              </span>
-            {/each}
-          {/each}
-        </div>
+        <VerticalStackedBar
+          districts={statistic.districts}
+          active={statistic.year === 2019} />
         <h3>{statistic.year}</h3>
       </div>
     {/each}
   </div>
   <div
-    style="height: 100vh; border-top: 1px solid black; display: flex;
-    flex-direction: column; justify-content: center;">
+    style="height: 100vh; display: flex; flex-direction: column;
+    justify-content: center;">
     <h1>{data[1].year}</h1>
-    <div class="stacked-bar-districts">
-      {#each data[1].districts as district}
-        <div
-          style="height: 100%; width: {getWidth(district.totalReports, data[0].totalReports)}%;
-          background-color: {getColor(district.name)}" />
-      {/each}
-    </div>
+
+    <HorizontalStackedBar
+      districts={data[1].districts}
+      totalReports={data[1].totalReports}
+      {districtColors} />
   </div>
-  <div style="display: flex; flex-direction: row; height: 100vh;">
+
+  <div
+    style="display: flex; flex-direction: row; height: 100vh; align-items:
+    flex-end;">
     {#each data as statistic}
       <div class="statistics-year">
-        <div class="stacked-bar">
-          {#each statistic.districts as district}
-            {#each district.coordinates as coordinate}
-              <span
-                style="font-size: 3px; font-weight: bold; display: block;
-                height: 1.5px; color: orange;">
-                {coordinate.lon}, {coordinate.lat}
-              </span>
-            {/each}
-          {/each}
-        </div>
+        <VerticalStackedBar
+          districts={statistic.districts}
+          active={statistic.year === 2020} />
         <h3>{statistic.year}</h3>
       </div>
     {/each}
   </div>
   <div
-    style="height: 100vh; border-top: 1px solid black; display: flex;
-    flex-direction: column; justify-content: center;">
+    style="height: 100vh; display: flex; flex-direction: column;
+    justify-content: center;">
     <h1>{data[2].year}</h1>
-    <div class="stacked-bar-districts">
-      {#each data[2].districts as district}
-        <div
-          style="height: 100%; width: {getWidth(district.totalReports, data[0].totalReports)}%;
-          background-color: {getColor(district.name)}" />
-      {/each}
-    </div>
+
+    <HorizontalStackedBar
+      districts={data[2].districts}
+      totalReports={data[2].totalReports}
+      {districtColors} />
   </div>
+  -->
 </main>
