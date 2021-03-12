@@ -82,6 +82,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: -1;
   }
 
   .content-frame {
@@ -96,12 +97,12 @@
   .step-container {
     height: 100vh;
     width: 100%;
+    z-index: 9999;
   }
 
   .step {
-    border: 2px solid black;
-    height: 100%;
-    width: 50px;
+    height: 100vh;
+    width: 100%;
   }
 </style>
 
@@ -123,16 +124,18 @@
         this={currentComponent.component}
         {...currentComponent.props} />
     </div>
-    {#each steps as step, index}
-      <div class="step-container">
-        <span
+    <div class="step-container">
+      {#each steps as step, index}
+        <div
           class="step"
           use:viewport
           on:enterViewport={() => (stepIndex = index)}
           on:exitViewport={() => setNewStepIndex()}>
-          {step.text}
-        </span>
-      </div>
-    {/each}
+          <div style="background-color: white: padding: 5px; z-index: 9999;">
+            {step.text}
+          </div>
+        </div>
+      {/each}
+    </div>
   </div>
 </main>
