@@ -23,7 +23,6 @@
 
   $: stepIndex = 0;
   $: currentComponent = getCurrentComponent(stepIndex);
-  $: currentColor = getColor(stepIndex);
 
   function getCurrentComponent(index) {
     let component = {};
@@ -49,11 +48,6 @@
     if (stepIndex > 0) {
       stepIndex -= 1;
     }
-  }
-
-  function getColor(index) {
-    const steps = ["red", "yellow", "green", "violet", "grey"];
-    return steps[index];
   }
 </script>
 
