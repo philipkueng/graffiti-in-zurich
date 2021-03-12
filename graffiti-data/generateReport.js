@@ -128,7 +128,7 @@ function getFrequencyByYearAndDistrictWithCoordinates(data) {
         })
 
         year.districts.push({
-          district: districtName,
+          name: districtName,
           totalReports: districtTotalReports,
           coordinates
         })

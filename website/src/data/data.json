@@ -4,7 +4,7 @@
     "totalReports": 199,
     "districts": [
       {
-        "district": "Kreis 1",
+        "name": "Kreis 1",
         "totalReports": 24,
         "coordinates": [
           {
@@ -106,7 +106,7 @@
         ]
       },
       {
-        "district": "Kreis 2",
+        "name": "Kreis 2",
         "totalReports": 27,
         "coordinates": [
           {
@@ -220,7 +220,7 @@
         ]
       },
       {
-        "district": "Kreis 3",
+        "name": "Kreis 3",
         "totalReports": 10,
         "coordinates": [
           {
@@ -266,7 +266,7 @@
         ]
       },
       {
-        "district": "Kreis 4",
+        "name": "Kreis 4",
         "totalReports": 19,
         "coordinates": [
           {
@@ -348,7 +348,7 @@
         ]
       },
       {
-        "district": "Kreis 5",
+        "name": "Kreis 5",
         "totalReports": 13,
         "coordinates": [
           {
@@ -406,7 +406,7 @@
         ]
       },
       {
-        "district": "Kreis 6",
+        "name": "Kreis 6",
         "totalReports": 44,
         "coordinates": [
           {
@@ -588,7 +588,7 @@
         ]
       },
       {
-        "district": "Kreis 7",
+        "name": "Kreis 7",
         "totalReports": 9,
         "coordinates": [
           {
@@ -630,7 +630,7 @@
         ]
       },
       {
-        "district": "Kreis 8",
+        "name": "Kreis 8",
         "totalReports": 6,
         "coordinates": [
           {
@@ -660,7 +660,7 @@
         ]
       },
       {
-        "district": "Kreis 9",
+        "name": "Kreis 9",
         "totalReports": 15,
         "coordinates": [
           {
@@ -726,7 +726,7 @@
         ]
       },
       {
-        "district": "Kreis 10",
+        "name": "Kreis 10",
         "totalReports": 14,
         "coordinates": [
           {
@@ -788,7 +788,7 @@
         ]
       },
       {
-        "district": "Kreis 11",
+        "name": "Kreis 11",
         "totalReports": 17,
         "coordinates": [
           {
@@ -862,7 +862,7 @@
         ]
       },
       {
-        "district": "Kreis 12",
+        "name": "Kreis 12",
         "totalReports": 1,
         "coordinates": [
           {
@@ -878,7 +878,7 @@
     "totalReports": 318,
     "districts": [
       {
-        "district": "Kreis 1",
+        "name": "Kreis 1",
         "totalReports": 71,
         "coordinates": [
           {
@@ -1168,7 +1168,7 @@
         ]
       },
       {
-        "district": "Kreis 2",
+        "name": "Kreis 2",
         "totalReports": 54,
         "coordinates": [
           {
@@ -1390,7 +1390,7 @@
         ]
       },
       {
-        "district": "Kreis 3",
+        "name": "Kreis 3",
         "totalReports": 12,
         "coordinates": [
           {
@@ -1444,7 +1444,7 @@
         ]
       },
       {
-        "district": "Kreis 4",
+        "name": "Kreis 4",
         "totalReports": 15,
         "coordinates": [
           {
@@ -1510,7 +1510,7 @@
         ]
       },
       {
-        "district": "Kreis 5",
+        "name": "Kreis 5",
         "totalReports": 21,
         "coordinates": [
           {
@@ -1600,7 +1600,7 @@
         ]
       },
       {
-        "district": "Kreis 6",
+        "name": "Kreis 6",
         "totalReports": 36,
         "coordinates": [
           {
@@ -1750,7 +1750,7 @@
         ]
       },
       {
-        "district": "Kreis 7",
+        "name": "Kreis 7",
         "totalReports": 14,
         "coordinates": [
           {
@@ -1812,7 +1812,7 @@
         ]
       },
       {
-        "district": "Kreis 8",
+        "name": "Kreis 8",
         "totalReports": 17,
         "coordinates": [
           {
@@ -1886,7 +1886,7 @@
         ]
       },
       {
-        "district": "Kreis 9",
+        "name": "Kreis 9",
         "totalReports": 15,
         "coordinates": [
           {
@@ -1952,7 +1952,7 @@
         ]
       },
       {
-        "district": "Kreis 10",
+        "name": "Kreis 10",
         "totalReports": 21,
         "coordinates": [
           {
@@ -2042,7 +2042,7 @@
         ]
       },
       {
-        "district": "Kreis 11",
+        "name": "Kreis 11",
         "totalReports": 35,
         "coordinates": [
           {
@@ -2188,7 +2188,7 @@
         ]
       },
       {
-        "district": "Kreis 12",
+        "name": "Kreis 12",
         "totalReports": 7,
         "coordinates": [
           {
@@ -2228,7 +2228,7 @@
     "totalReports": 344,
     "districts": [
       {
-        "district": "Kreis 1",
+        "name": "Kreis 1",
         "totalReports": 82,
         "coordinates": [
           {
@@ -2562,7 +2562,7 @@
         ]
       },
       {
-        "district": "Kreis 2",
+        "name": "Kreis 2",
         "totalReports": 61,
         "coordinates": [
           {
@@ -2812,7 +2812,7 @@
         ]
       },
       {
-        "district": "Kreis 3",
+        "name": "Kreis 3",
         "totalReports": 17,
         "coordinates": [
           {
@@ -2886,7 +2886,7 @@
         ]
       },
       {
-        "district": "Kreis 4",
+        "name": "Kreis 4",
         "totalReports": 12,
         "coordinates": [
           {
@@ -2940,7 +2940,7 @@
         ]
       },
       {
-        "district": "Kreis 5",
+        "name": "Kreis 5",
         "totalReports": 13,
         "coordinates": [
           {
@@ -2998,7 +2998,7 @@
         ]
       },
       {
-        "district": "Kreis 6",
+        "name": "Kreis 6",
         "totalReports": 21,
         "coordinates": [
           {
@@ -3088,7 +3088,7 @@
         ]
       },
       {
-        "district": "Kreis 7",
+        "name": "Kreis 7",
         "totalReports": 11,
         "coordinates": [
           {
@@ -3138,7 +3138,7 @@
         ]
       },
       {
-        "district": "Kreis 8",
+        "name": "Kreis 8",
         "totalReports": 30,
         "coordinates": [
           {
@@ -3264,7 +3264,7 @@
         ]
       },
       {
-        "district": "Kreis 9",
+        "name": "Kreis 9",
         "totalReports": 10,
         "coordinates": [
           {
@@ -3310,7 +3310,7 @@
         ]
       },
       {
-        "district": "Kreis 10",
+        "name": "Kreis 10",
         "totalReports": 17,
         "coordinates": [
           {
@@ -3384,7 +3384,7 @@
         ]
       },
       {
-        "district": "Kreis 11",
+        "name": "Kreis 11",
         "totalReports": 65,
         "coordinates": [
           {
@@ -3650,7 +3650,7 @@
         ]
       },
       {
-        "district": "Kreis 12",
+        "name": "Kreis 12",
         "totalReports": 5,
         "coordinates": [
           {
