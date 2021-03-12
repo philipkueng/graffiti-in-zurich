@@ -17,7 +17,7 @@
   ];
 
   export let data;
-  export let steps;
+  // export let steps;
   let totalReports = 0;
   data.map(year => (totalReports += year.totalReports));
 
@@ -25,33 +25,30 @@
 
   let currentComponent;
 
-  $: currentColor = red;
+  // function getCurrentDisplay(index) {
+  //   import("./components/VerticalStackedBar.svelte").then(
+  //     res => (currentComponent = res.default)
+  //   );
+  // }
 
-  function getCurrentDisplay(index) {
-    import("./components/VerticalStackedBar.svelte").then(
-      res => (currentComponent = res.default)
-    );
-  }
-  getCurrentDisplay(1);
-
-  function elementInViewport(index) {
-    let el = document.querySelectorAll(`.step-${index}`);
-    var top = el.offsetTop;
-    var left = el.offsetLeft;
-    var width = el.offsetWidth;
-    var height = el.offsetHeight;
-    while (el.offsetParent) {
-      el = el.offsetParent;
-      top += el.offsetTop;
-      left += el.offsetLeft;
-    }
-    return (
-      top >= window.pageYOffset &&
-      left >= window.pageXOffset &&
-      top + height <= window.pageYOffset + window.innerHeight &&
-      left + width <= window.pageXOffset + window.innerWidth
-    );
-  }
+  // function elementInViewport(index) {
+  //   let el = document.querySelectorAll(`.step-${index}`);
+  //   var top = el.offsetTop;
+  //   var left = el.offsetLeft;
+  //   var width = el.offsetWidth;
+  //   var height = el.offsetHeight;
+  //   while (el.offsetParent) {
+  //     el = el.offsetParent;
+  //     top += el.offsetTop;
+  //     left += el.offsetLeft;
+  //   }
+  //   return (
+  //     top >= window.pageYOffset &&
+  //     left >= window.pageXOffset &&
+  //     top + height <= window.pageYOffset + window.innerHeight &&
+  //     left + width <= window.pageXOffset + window.innerWidth
+  //   );
+  // }
 </script>
 
 <style>
@@ -114,9 +111,9 @@
       src="https://www.zkb.ch/media/contenthub-immobilien/bilder/content/bilder-stories/ZH_Stadtkreise.img.1557942666008.940.png"
       alt="" />
   </div>
-  <div class="content-container" style="height: 100vh;">
+  <!-- <div class="content-container" style="height: 100vh;">
     <div class="content-frame">
-      <!-- <svelte:component this={currentComponent} {data} activeYear={false} /> -->
+      <!-- <svelte:component this={currentComponent} {data} activeYear={false} /> 
       <div style="height: 50%; width: 50%; background-color: {currentColor};" />
     </div>
     {#each steps as step, index}
@@ -124,28 +121,18 @@
         <span class="step">{step.text} {elementInViewport(index)}</span>
       </div>
     {/each}
-  </div>
-  <!-- <div
-    style="">
-    {#each data as statistic}
-      <div class="statistics-year">
-        <VerticalStackedBar districts={statistic.districts} active={false} />
-        <h3>{statistic.year}</h3>
-      </div>
-    {/each}
+  </div> -->
+
+  <div
+    style="display: flex; flex-direction: row; height: 100vh; align-items:
+    flex-end;">
+    <VerticalStackedBar {data} />
   </div>
 
   <div
     style="display: flex; flex-direction: row; height: 100vh; align-items:
     flex-end;">
-    {#each data as statistic}
-      <div class="statistics-year">
-        <VerticalStackedBar
-          districts={statistic.districts}
-          active={statistic.year === 2018} />
-        <h3>{statistic.year}</h3>
-      </div>
-    {/each}
+    <VerticalStackedBar {data} activeYear={2018} />
   </div>
   <div
     style="height: 100vh; display: flex; flex-direction: column;
@@ -161,14 +148,7 @@
   <div
     style="display: flex; flex-direction: row; height: 100vh; align-items:
     flex-end;">
-    {#each data as statistic}
-      <div class="statistics-year">
-        <VerticalStackedBar
-          districts={statistic.districts}
-          active={statistic.year === 2019} />
-        <h3>{statistic.year}</h3>
-      </div>
-    {/each}
+    <VerticalStackedBar {data} activeYear={2018} />
   </div>
   <div
     style="height: 100vh; display: flex; flex-direction: column;
@@ -184,14 +164,7 @@
   <div
     style="display: flex; flex-direction: row; height: 100vh; align-items:
     flex-end;">
-    {#each data as statistic}
-      <div class="statistics-year">
-        <VerticalStackedBar
-          districts={statistic.districts}
-          active={statistic.year === 2020} />
-        <h3>{statistic.year}</h3>
-      </div>
-    {/each}
+    <VerticalStackedBar {data} activeYear={2020} />
   </div>
   <div
     style="height: 100vh; display: flex; flex-direction: column;
@@ -203,5 +176,5 @@
       totalReports={data[2].totalReports}
       {districtColors} />
   </div>
-  -->
+
 </main>
