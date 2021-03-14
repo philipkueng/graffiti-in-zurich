@@ -4,7 +4,10 @@
   export let activeYear;
 
   function getColor(loopYear, activeYear) {
-    return loopYear === activeYear ? "orange" : "darkgrey";
+    if (activeYear) {
+      return loopYear === activeYear ? "#268bcc" : "darkgrey";
+    }
+    return "black";
   }
 </script>
 
@@ -32,6 +35,12 @@
     letter-spacing: 2px;
     font-variant-numeric: tabular-nums;
   }
+
+  .stacked-bar-year {
+    color: black;
+    font-family: "StreetWars";
+    font-size: 50px;
+  }
 </style>
 
 <div class="stacked-bar-container">
@@ -39,14 +48,24 @@
     <div
       class="stacked-bar"
       style="color: {getColor(statistic.year, activeYear)};">
-      {#each statistic.districts as district}
-        {#each district.coordinates as coordinate}
-          <span class="coordinate-block">
-            {coordinate.lon}, {coordinate.lat}
+      <div style="display: flex; flex-direction: column;">
+        <!-- {#if statistic.year === activeYear}
+          <span
+            class="stacked-bar-year"
+            style="writing-mode: vertical-rl; text-orientation: mixed;">
+            {statistic.totalReports}
           </span>
+        {/if} -->
+        {#each statistic.districts as district}
+          {#each district.coordinates as coordinate}
+            <span class="coordinate-block">
+              {coordinate.lon}, {coordinate.lat}
+            </span>
+          {/each}
         {/each}
-      {/each}
-      <h3 style="color: black">{statistic.year}</h3>
+      </div>
+      <span class="stacked-bar-year">{statistic.year}</span>
     </div>
   {/each}
+
 </div>

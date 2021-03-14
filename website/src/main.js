@@ -4,7 +4,7 @@ import steps from './data/steps.json';
 
 function resolveImages(filename) {
 	const images = [
-		"karte.png",
+		"karte.svg",
 	];
 	if (images.includes(filename)) {
 		return `images/${filename}`;

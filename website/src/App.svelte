@@ -50,7 +50,7 @@
   }
 
   function getTop(component) {
-    return component.component ? "15vh" : 0;
+    return component.component ? "8vh" : 0;
   }
 </script>
 
@@ -62,7 +62,7 @@
   }
 
   h1 {
-    font-family: "Antifont";
+    font-family: "StreetWars";
     text-transform: uppercase;
     font-size: 6em;
     font-weight: 100;
@@ -95,6 +95,7 @@
   }
   .step-box {
     background-color: white;
+    width: 100%;
     padding: 20px;
     z-index: 9999;
     box-shadow: 3px 5px 3px grey;
@@ -130,21 +131,21 @@
           class="teaser zueri-flagge"
           use:viewport
           on:enterViewport={() => (stepIndex = 0)}>
-          <div style="width: 70%;">
-            <h1 style="text-align: center; margin-bottom: 0px">
+          <div>
+            <h1
+              style="text-align: center; margin-top: 0px; margin-bottom: 0px;">
               {currentComponent.props.header}
             </h1>
             <h4 style="text-align: right;">
-              von
+
               <span
-                style="font-family: 'Antifont'; font-size: 25px; margin-left:
-                3px;">
-                {currentComponent.props.autor}
+                style="font-family: 'StreetWars'; font-size: 35px; margin-left:
+                4px;">
+                von {currentComponent.props.author}
               </span>
-              , {currentComponent.props.organisation}
             </h4>
           </div>
-          <img style="height: 50%; " src={resolveImages('karte.png')} alt="" />
+          <img style="height: 55%; " src={resolveImages('karte.svg')} alt="" />
         </div>
       {:else}
         <svelte:component

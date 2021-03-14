@@ -1,17 +1,20 @@
 [
   {
     "type": "teaser",
-    "header": ".Graffiti in Zuerich",
-    "autor": "Philip Kueng",
-    "organisation": "sfgb:b IAD11"
+    "header": "Graffiti in Zuerich*",
+    "author": "Philip Kueng"
   },
   {
-    "text": "Overview for all years",
+    "type": "map",
+    "activeYear": null
+  },
+  {
+    "text": "Von 2018 bis 2020 sind beim 2013 eingeführen Service 'züri-wie-neu' insgesammt 681 Meldungen eingegangen.",
     "type": "vertical",
     "activeYear": null
   },
   {
-    "text": "Displaying the vertical stacked bars for 2018",
+    "text": "2018 waren es ",
     "type": "vertical",
     "activeYear": 2018
   },
