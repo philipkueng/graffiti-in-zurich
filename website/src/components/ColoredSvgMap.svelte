@@ -26,9 +26,14 @@
 </script>
 
 <style>
-
+  .map-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 </style>
 
-<div>
-  <img style="height: 20%;" src={resolveImages('karte.svg')} alt="" />
+<div class="map-container">
+  <img style="height: 90%;" src={resolveImages('karte.svg')} alt="" />
 </div>
