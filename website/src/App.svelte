@@ -35,6 +35,8 @@
     } else if (step.type === "svgmap") {
       component.component = ColoredSvgMap;
       component.props = {
+        data,
+        activeYear: step.activeYear,
         resolveImages
       };
     } else {
@@ -135,7 +137,6 @@
               {currentComponent.props.header}
             </h1>
             <h4 style="text-align: right;">
-
               <span
                 style="font-family: 'StreetWars'; font-size: 35px; margin-left:
                 4px;">
@@ -143,7 +144,10 @@
               </span>
             </h4>
           </div>
-          <img style="height: 55%; " src={resolveImages('karte.svg')} alt="" />
+          <img
+            style="height: 55%; "
+            src={resolveImages('karte.svg')}
+            alt="Choroplethkarte von Zürich" />
         </div>
       {:else}
         <svelte:component
