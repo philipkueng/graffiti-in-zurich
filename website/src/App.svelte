@@ -1,6 +1,6 @@
 <script>
   import VerticalStackedBar from "./components/VerticalStackedBar.svelte";
-  import HorizontalStackedBar from "./components/HorizontalStackedBar.svelte";
+  import ColoredSvgMap from "./components/ColoredSvgMap.svelte";
   import viewport from "./helper/useViewportAction.js";
 
   export let data;
@@ -32,12 +32,10 @@
       component.props = {
         ...step
       };
-    } else if (step.type === "horizontal") {
-      component.component = HorizontalStackedBar;
+    } else if (step.type === "svgmap") {
+      component.component = ColoredSvgMap;
       component.props = {
-        data,
-        activeYear: step.activeYear,
-        districtColors
+        resolveImages
       };
     } else {
       component.component = VerticalStackedBar;

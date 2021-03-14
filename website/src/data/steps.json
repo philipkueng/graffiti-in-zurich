@@ -20,7 +20,7 @@
   },
   {
     "text": "Displaying the districts for 2018",
-    "type": "horizontal",
+    "type": "svgmap",
     "activeYear": 2018
   },
   {
@@ -30,7 +30,7 @@
   },
   {
     "text": "Displaying the districts for 2019",
-    "type": "horizontal",
+    "type": "svgmap",
     "activeYear": 2019
   },
   {
@@ -40,7 +40,7 @@
   },
   {
     "text": "Displaying the districts for 2020",
-    "type": "horizontal",
+    "type": "svgmap",
     "activeYear": 2020
   }
 ]
