@@ -46,7 +46,7 @@
 
   .header {
     font-family: StreetWars;
-    font-size: 5em;
+    font-size: 6em;
     text-align: center;
     margin-bottom: 20px;
   }
@@ -55,56 +55,75 @@
     text-align: left;
     width: 100%;
     width: 49%;
-    margin-top: 22px;
+    margin-top: 10px;
     font-family: "Roboto";
+  }
+
+  .slider-container {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+    font-family: Roboto;
+    font-size: 1.5em;
+  }
+
+  .component-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    justify-content: center;
+  }
+  .slider {
+    cursor: pointer;
+    height: 100%;
+  }
+
+  .map {
+    width: 49%;
+  }
+
+  .related-info {
+    margin-top: 16px;
+    padding: 0px 50px;
+    font-size: 0.7em;
+    color: #949494;
   }
 </style>
 
 <main class="zueri-flagge">
   <div class="header">Graffiti in Zuerich</div>
-  <div
-    style="width: 100%; display: flex; flex-direction: column;
-    align-items:center;">
-    <div
-      style="width: 100%; display: flex; flex-direction: row; height: 100vh;
-      justify-content: center;">
-      <div style="width: 49%;">
-        <div
-          style="display: flex; flex-direction: row; align-items: baseline;
-          justify-content: center; font-family: StreetWars; font-size: 45px">
-          <div
-            style="cursor: pointer; height: 100%; padding: 5px 30px;"
-            on:click={() => changeIndex('minus', activeYear)}>
-            &#60;
-          </div>
-          {#each data as entry}
-            <div
-              style="cursor: pointer; height: 100%; padding: 5px 30px;"
-              class:active-year={activeYear === entry.year}
-              on:click={() => (activeYear = entry.year)}>
-              {entry.year}
-            </div>
-          {/each}
-          <div
-            style="cursor: pointer; height: 100%; padding: 5px 30px;"
-            on:click={() => changeIndex('plus', activeYear)}>
-            &#62;
-          </div>
+  <div class="component-container">
+    <div class="map">
+      <div class="slider-container">
+        <div class="slider" on:click={() => changeIndex('minus', activeYear)}>
+          &#60;
         </div>
-        <ColoredSvgMap data={getData(data, activeYear)} />
+        {#each data as entry}
+          <div
+            class="slider"
+            class:active-year={activeYear === entry.year}
+            on:click={() => (activeYear = entry.year)}>
+            {entry.year}
+          </div>
+        {/each}
+        <div class="slider" on:click={() => changeIndex('plus', activeYear)}>
+          &#62;
+        </div>
       </div>
-      <div class="texts">
-        {@html texts.find(text => text.year === activeYear).text}
-      </div>
+      <ColoredSvgMap data={getData(data, activeYear)} />
+    </div>
+    <div class="texts">
+      {@html texts.find(text => text.year === activeYear).text}
     </div>
   </div>
 </main>
-<div
-  style="margin-top: 16px; padding: 0px 50px; font-size: 0.7em; color: #949494 ">
+<footer class="related-info">
   Repository auf
   <a
     href="https://github.com/philipkueng/graffiti-in-zurich"
     style="color: #949494; text-decoration: underline;">
     github
   </a>
-</div>
+</footer>

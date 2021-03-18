@@ -26,7 +26,6 @@
     width: 30%;
     display: flex;
     justify-content: center;
-    margin-bottom: 40px;
   }
 
   .legend-container {
@@ -58,17 +57,18 @@
     border-left: 0.5px solid;
     width: 100%;
   }
+
+  .legend-value-container--minVal,
+  .legend-value-container--maxVal {
+    font-size: 0.65em;
+  }
 </style>
 
 <div class="legend">
   <div class="legend-container">
     <div class="legend-value-container">
-      <span class="q-choropleth-legend-value-container--minVal s-font-note-s">
-        {data.legend.minValue}
-      </span>
-      <span class="legend-value-container--maxVal s-font-note-s">
-        {data.legend.maxValue}
-      </span>
+      <span class="legend-value-container--minVal">{data.legend.minValue}</span>
+      <span class="legend-value-container--maxVal">{data.legend.maxValue}</span>
     </div>
     <div class="legend-border-container">
       <svg class="legend-buckets">
