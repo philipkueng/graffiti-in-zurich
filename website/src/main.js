@@ -1,6 +1,6 @@
 import App from './App.svelte';
 import data from './data/data.json';
-import steps from './data/steps.json';
+import texts from './data/texts.json';
 
 function resolveImages(filename) {
 	const images = [
@@ -16,7 +16,7 @@ const app = new App({
 	target: document.body,
 	props: {
 		data,
-		steps,
+		texts,
 		resolveImages,
 	}
 });

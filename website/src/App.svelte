@@ -2,6 +2,8 @@
   import ColoredSvgMap from "./components/ColoredSvgMap.svelte";
 
   export let data;
+  export let texts;
+
   let activeYear = 2018;
 
   function getData(data, activeYear) {
@@ -41,10 +43,20 @@
     font-weight: bold;
     font-size: 1.2em;
   }
+
   .header {
     font-family: StreetWars;
-    font-size: 4em;
+    font-size: 5em;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .texts {
     text-align: left;
+    width: 100%;
+    width: 49%;
+    margin-top: 22px;
+    font-family: "Roboto";
   }
 </style>
 
@@ -81,9 +93,18 @@
         </div>
         <ColoredSvgMap data={getData(data, activeYear)} />
       </div>
-      <div style="text-align: left; width: 100%; width: 49%;">
-        This is a text about something.
+      <div class="texts">
+        {@html texts.find(text => text.year === activeYear).text}
       </div>
     </div>
   </div>
 </main>
+<div
+  style="margin-top: 16px; padding: 0px 50px; font-size: 0.7em; color: #949494 ">
+  Repository auf
+  <a
+    href="https://github.com/philipkueng/graffiti-in-zurich"
+    style="color: #949494; text-decoration: underline;">
+    github
+  </a>
+</div>
