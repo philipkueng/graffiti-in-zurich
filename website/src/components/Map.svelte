@@ -1,16 +1,30 @@
 <script>
-  export let districtColors;
-  export let empty = false;
+  export let data;
 
-  function getColor(districtName) {
-    if (empty) {
-      return "transparent";
+  function getValue(data, districtName) {
+    return data.districts.find(district => district.name === districtName)
+      .totalReports;
+  }
+
+  function getColor(district, data) {
+    let value = getValue(data, district);
+    console.log(value);
+    const buckets = data.legend.buckets;
+    const bucket = buckets.find((bucket, index) => {
+      if (index === 0) {
+        return value <= bucket.to;
+      } else if (index === buckets.length - 1) {
+        return bucket.from < value;
+      } else {
+        return bucket.from < value && value <= bucket.to;
+      }
+    });
+    if (bucket) {
+      console.log(bucket.color.colorClass);
+      return bucket.color.colorClass;
+    } else {
+      return "s-color-gray-4";
     }
-    console.log(
-      districtColors.find(district => district.name === districtName).color
-    );
-    return districtColors.find(district => district.name === districtName)
-      .color;
   }
 </script>
 
@@ -19,7 +33,7 @@
   viewBox="0 0 600 568"
   style="enable-background:new 0 0 600 568;">
   <g
-    style="color: ${getColor('Kreis8')}"
+    style="color: {getColor('Kreis 8', data)}"
     fill="currentColor"
     stroke-width="1"
     stroke="currentColor"
@@ -35,7 +49,7 @@
       z" />
   </g>
   <g
-    style="color: ${getColor('Kreis2')}"
+    style="color: {getColor('Kreis 2', data)}"
     fill="currentColor"
     stroke-width="1"
     stroke="currentColor"
@@ -57,7 +71,7 @@
       c6.8,7.2,12.7,15.2,17.8,23.8c0.3,0.5,0.6,0.8,0.9,1.1C345.9,463.4,343.1,465.5,341.3,467z" />
   </g>
   <g
-    style="color: ${getColor('Kreis1')}"
+    style="color: {getColor('Kreis 1', data)}"
     fill="currentColor"
     stroke-width="1"
     stroke="currentColor"
@@ -269,7 +283,7 @@
     s9.1,1.7,10.8,2.5c3,1.6,3.1,1.8,2.5,6c-0.4,2.4-0.7,5-0.7,5.7c0,1.5,4.4,8.1,5.5,8.1c1.6,0,7.5,5.2,7.5,6.5
     C586.8,388.2,586.7,388.5,586.5,388.7z" />
   <g
-    style="color: ${getColor('Kreis10')}"
+    style="color: {getColor('Kreis 10', data)}"
     fill="currentColor"
     stroke-width="1"
     stroke="currentColor"
@@ -290,7 +304,7 @@
       c1.5,1.7,2.7,2.1,4.8,1.9c2-0.3,3,0.1,3.6,1.3c0.4,1,2.6,3.7,5,6.2" />
   </g>
   <g
-    style="color: ${getColor('Kreis6')}"
+    style="color: {getColor('Kreis 6', data)}"
     fill="currentColor"
     stroke-width="1"
     stroke="currentColor"
@@ -310,7 +324,7 @@
       c-0.6,0.3-1.9-1.3-2.7-3.3c-1.5-3.4-16.3-20.1-16.3-18.5c0,0.4-1.8-0.5-3.9-1.9l-4-2.6l2.8-3c4.2-4.4,5.3-7,5.3-12.5" />
   </g>
   <g
-    style="color: ${getColor('Kreis11')}"
+    style="color: {getColor('Kreis 11', data)}"
     fill="currentColor"
     stroke-width="1"
     stroke="currentColor"
@@ -334,7 +348,7 @@
       c-1-2-2-4.7-2.2-6.1C145.2,47.7,144,46.7,137.5,44.4z" />
   </g>
   <g
-    style="color: ${getColor('Kreis12')}"
+    style="color: {getColor('Kreis 12', data)}"
     fill="currentColor"
     stroke-width="1"
     stroke="currentColor"
@@ -351,7 +365,7 @@
       c1.3-1.4,2.6-4.1,3-6c0.6-3.1,0.1-14.3-1.2-28.6C368.6,105.3,370.6,103.6,388.1,98.6z" />
   </g>
   <g
-    style="color: ${getColor('Kreis7')}"
+    style="color: {getColor('Kreis 7', data)}"
     fill="currentColor"
     stroke-width="1"
     stroke="currentColor"
@@ -378,7 +392,7 @@
       " />
   </g>
   <g
-    style="color: ${getColor('Kreis4')}"
+    style="color: {getColor('Kreis 4', data)}"
     fill="currentColor"
     stroke-width="1"
     stroke="currentColor"
@@ -393,7 +407,7 @@
       C199.9,258.3,199.9,255.7,196.6,252.3z" />
   </g>
   <g
-    style="color: ${getColor('Kreis5')}"
+    style="color: {getColor('Kreis 5', data)}"
     fill="currentColor"
     stroke-width="1"
     stroke="currentColor"
@@ -406,7 +420,7 @@
       c-23.6-10.9-48.8-24.2-55.5-29.2c-3-2.2-5.7-4.2-5.9-4.4c-0.2-0.1,0.2-0.9,0.9-1.8C189.2,213.1,189.5,211.5,189.2,210.5z" />
   </g>
   <g
-    style="color: ${getColor('Kreis9')}"
+    style="color: {getColor('Kreis 9', data)}"
     fill="currentColor"
     stroke-width="1"
     stroke="currentColor"
@@ -429,7 +443,7 @@
       c-0.2,4.5-0.5,5.2-4.5,8.1c-2.2,1.8-7.2,5-11,7.2c-7.9,4.7-11.5,7.8-14.3,12.2L124.9,372.3z" />
   </g>
   <g
-    style="color: ${getColor('Kreis3')}"
+    style="color: {getColor('Kreis 3', data)}"
     fill="currentColor"
     stroke-width="1"
     stroke="currentColor"

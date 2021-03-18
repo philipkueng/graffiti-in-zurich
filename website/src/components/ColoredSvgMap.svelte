@@ -1,33 +1,20 @@
 <script>
+  import Legend from "./Legend.svelte";
   import Map from "./Map.svelte";
-  import { beforeUpdate, afterUpdate } from "svelte";
 
   export let data;
-
-  $: districtColors = getColors(data);
-
-  function getColors(data) {
-    let styles = [];
-    data.districts.map(
-      district =>
-        (styles = [
-          ...styles,
-          { name: district.name.replace(" ", ""), color: district.color }
-        ])
-    );
-    return styles;
-  }
 </script>
 
 <style>
   .map-container {
-    height: 100%;
+    height: 70%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 </style>
 
 <div class="map-container">
-  <Map bind:districtColors />
+  <Legend {data} />
+  <Map {data} />
 </div>

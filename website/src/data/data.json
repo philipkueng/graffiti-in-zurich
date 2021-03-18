@@ -883,7 +883,55 @@
           }
         ]
       }
-    ]
+    ],
+    "legend": {
+      "maxValue": 44,
+      "minValue": 1,
+      "buckets": [
+        {
+          "from": 1,
+          "to": 1,
+          "color": {
+            "colorClass": "#e3e4e9"
+          }
+        },
+        {
+          "from": 1,
+          "to": 10,
+          "color": {
+            "colorClass": "#c1c8ee"
+          }
+        },
+        {
+          "from": 10,
+          "to": 15,
+          "color": {
+            "colorClass": "#a1abf1"
+          }
+        },
+        {
+          "from": 15,
+          "to": 19,
+          "color": {
+            "colorClass": "#818ef2"
+          }
+        },
+        {
+          "from": 19,
+          "to": 27,
+          "color": {
+            "colorClass": "#6070f1"
+          }
+        },
+        {
+          "from": 27,
+          "to": 44,
+          "color": {
+            "colorClass": "#3952ee"
+          }
+        }
+      ]
+    }
   },
   {
     "year": 2019,
@@ -2245,7 +2293,55 @@
           }
         ]
       }
-    ]
+    ],
+    "legend": {
+      "maxValue": 71,
+      "minValue": 7,
+      "buckets": [
+        {
+          "from": 7,
+          "to": 7,
+          "color": {
+            "colorClass": "#e3e4e9"
+          }
+        },
+        {
+          "from": 7,
+          "to": 17,
+          "color": {
+            "colorClass": "#c1c8ee"
+          }
+        },
+        {
+          "from": 17,
+          "to": 21,
+          "color": {
+            "colorClass": "#a1abf1"
+          }
+        },
+        {
+          "from": 21,
+          "to": 36,
+          "color": {
+            "colorClass": "#818ef2"
+          }
+        },
+        {
+          "from": 36,
+          "to": 54,
+          "color": {
+            "colorClass": "#6070f1"
+          }
+        },
+        {
+          "from": 54,
+          "to": 71,
+          "color": {
+            "colorClass": "#3952ee"
+          }
+        }
+      ]
+    }
   },
   {
     "year": 2020,
@@ -3711,6 +3807,54 @@
           }
         ]
       }
-    ]
+    ],
+    "legend": {
+      "maxValue": 82,
+      "minValue": 5,
+      "buckets": [
+        {
+          "from": 5,
+          "to": 5,
+          "color": {
+            "colorClass": "#e3e4e9"
+          }
+        },
+        {
+          "from": 5,
+          "to": 13,
+          "color": {
+            "colorClass": "#c1c8ee"
+          }
+        },
+        {
+          "from": 13,
+          "to": 21,
+          "color": {
+            "colorClass": "#a1abf1"
+          }
+        },
+        {
+          "from": 21,
+          "to": 30,
+          "color": {
+            "colorClass": "#818ef2"
+          }
+        },
+        {
+          "from": 30,
+          "to": 65,
+          "color": {
+            "colorClass": "#6070f1"
+          }
+        },
+        {
+          "from": 65,
+          "to": 82,
+          "color": {
+            "colorClass": "#3952ee"
+          }
+        }
+      ]
+    }
   }
 ]

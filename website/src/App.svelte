@@ -43,7 +43,7 @@
   }
   .header {
     font-family: StreetWars;
-    font-size: 3em;
+    font-size: 4em;
     text-align: left;
   }
 </style>
@@ -55,7 +55,7 @@
     align-items:center;">
     <div
       style="width: 100%; display: flex; flex-direction: row; height: 100vh;
-      margin-top: 20px;">
+      justify-content: center;">
       <div style="width: 49%;">
         <div
           style="display: flex; flex-direction: row; align-items: baseline;
