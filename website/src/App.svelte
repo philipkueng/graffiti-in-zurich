@@ -1,117 +1,28 @@
 <script>
-  import VerticalStackedBar from "./components/VerticalStackedBar.svelte";
   import ColoredSvgMap from "./components/ColoredSvgMap.svelte";
-  import viewport from "./helper/useViewportAction.js";
 
   export let data;
-  export let steps;
-  export let resolveImages;
+  let activeYear = 2018;
 
-  const districtColors = [
-    { name: "Kreis 1", color: "yellow" },
-    { name: "Kreis 2", color: "red" },
-    { name: "Kreis 3", color: "blue" },
-    { name: "Kreis 4", color: "black" },
-    { name: "Kreis 5", color: "lightgrey" },
-    { name: "Kreis 6", color: "lightblue" },
-    { name: "Kreis 7", color: "brown" },
-    { name: "Kreis 8", color: "orange" },
-    { name: "Kreis 9", color: "green" },
-    { name: "Kreis 10", color: "olive" },
-    { name: "Kreis 11", color: "lightgreen" },
-    { name: "Kreis 12", color: "grey" }
-  ];
-
-  $: stepIndex = 0;
-  $: currentComponent = getCurrentComponent(stepIndex);
-
-  function getCurrentComponent(index) {
-    let component = {};
-    let step = steps[index];
-    if (step.type === "teaser") {
-      component.props = {
-        ...step
-      };
-    } else if (step.type === "svgmap") {
-      component.component = ColoredSvgMap;
-      component.props = {
-        data,
-        activeYear: step.activeYear,
-        resolveImages
-      };
-    } else {
-      component.component = VerticalStackedBar;
-      component.props = {
-        data,
-        activeYear: step.activeYear
-      };
-    }
-    return component;
+  function getData(data, activeYear) {
+    return data.find(stats => stats.year === activeYear);
   }
 
-  function getTop(component) {
-    return component.component ? "8vh" : 0;
+  function changeIndex(method, activeYear) {
+    if (method === "minus") {
+      if (activeYear === 2018) return;
+      console.log("sub");
+      activeYear -= 1;
+    } else {
+      if (activeYear === 2020) return;
+      console.log("add");
+      activeYear += 1;
+      console.log(activeYear);
+    }
   }
 </script>
 
 <style>
-  main {
-    padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
-  }
-
-  h1 {
-    font-family: "StreetWars";
-    text-transform: uppercase;
-    font-size: 6em;
-    font-weight: 100;
-  }
-
-  .content-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    z-index: -1;
-  }
-
-  .content-frame {
-    position: fixed;
-    height: 70%;
-    width: 100%;
-  }
-
-  .step-container {
-    height: 100vh;
-    width: 100%;
-    z-index: 9999;
-  }
-
-  .step {
-    height: 100vh;
-    width: 100%;
-  }
-  .step-box {
-    background-color: white;
-    width: 100%;
-    padding: 20px;
-    z-index: 9999;
-    box-shadow: 3px 5px 3px grey;
-    border: 0.5px solid grey;
-    margin-top: 10px;
-  }
-
-  .teaser {
-    height: 100vh;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
   .zueri-flagge {
     width: 100%;
     background: linear-gradient(
@@ -121,51 +32,58 @@
       white calc(50% + 1px)
     );
   }
+
+  main {
+    height: 100vh;
+    padding: 20px;
+  }
+  .active-year {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  .header {
+    font-family: StreetWars;
+    font-size: 3em;
+    text-align: left;
+  }
 </style>
 
-<main>
-  <div class="content-container">
-    <div class="content-frame" style="top: {getTop(currentComponent)};">
-      {#if !currentComponent.component}
+<main class="zueri-flagge">
+  <div class="header">Graffiti in Zuerich</div>
+  <div
+    style="width: 100%; display: flex; flex-direction: column;
+    align-items:center;">
+    <div
+      style="width: 100%; display: flex; flex-direction: row; height: 100vh;
+      margin-top: 20px;">
+      <div style="width: 49%;">
         <div
-          class="teaser zueri-flagge"
-          use:viewport
-          on:enterViewport={() => (stepIndex = 0)}>
-          <div>
-            <h1
-              style="text-align: center; margin-top: 0px; margin-bottom: 0px;">
-              {currentComponent.props.header}
-            </h1>
-            <h4 style="text-align: right;">
-              <span
-                style="font-family: 'StreetWars'; font-size: 35px; margin-left:
-                4px;">
-                von {currentComponent.props.author}
-              </span>
-            </h4>
+          style="display: flex; flex-direction: row; align-items: baseline;
+          justify-content: center; font-family: StreetWars; font-size: 45px">
+          <div
+            style="cursor: pointer; height: 100%; padding: 5px 30px;"
+            on:click={() => changeIndex('minus', activeYear)}>
+            &#60;
           </div>
-          <img
-            style="height: 55%; "
-            src={resolveImages('karte.svg')}
-            alt="Choroplethkarte von Zürich" />
+          {#each data as entry}
+            <div
+              style="cursor: pointer; height: 100%; padding: 5px 30px;"
+              class:active-year={activeYear === entry.year}
+              on:click={() => (activeYear = entry.year)}>
+              {entry.year}
+            </div>
+          {/each}
+          <div
+            style="cursor: pointer; height: 100%; padding: 5px 30px;"
+            on:click={() => changeIndex('plus', activeYear)}>
+            &#62;
+          </div>
         </div>
-      {:else}
-        <svelte:component
-          this={currentComponent.component}
-          {...currentComponent.props} />
-      {/if}
-    </div>
-    <div class="step-container">
-      {#each steps as step, index}
-        <div
-          class="step"
-          use:viewport
-          on:enterViewport={() => (stepIndex = index)}>
-          {#if step.text}
-            <div class="step-box">{step.text}</div>
-          {/if}
-        </div>
-      {/each}
+        <ColoredSvgMap data={getData(data, activeYear)} />
+      </div>
+      <div style="text-align: left; width: 100%; width: 49%;">
+        This is a text about something.
+      </div>
     </div>
   </div>
 </main>

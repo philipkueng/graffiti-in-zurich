@@ -2,21 +2,12 @@
   {
     "type": "teaser",
     "header": "Graffiti in Zuerich*",
-    "author": "Philip Kueng"
+    "author": ""
   },
   {
-    "type": "map",
-    "activeYear": null
-  },
-  {
-    "text": "Von 2018 bis 2020 sind beim 2013 eingeführen Service 'züri-wie-neu' insgesammt 681 Meldungen eingegangen.",
+    "text": "Von 2018 bis 2020 sind beim 2013 eingeführen Service <a href='https://www.zueriwieneu.ch/'>züri-wie-neu</a> insgesammt <span style='font-weight: bold;'>681 Meldungen</span> mit dem Tag 'Graffiti' eingegangen.",
     "type": "vertical",
     "activeYear": null
-  },
-  {
-    "text": "2018 waren es ",
-    "type": "vertical",
-    "activeYear": 2018
   },
   {
     "text": "Displaying the districts for 2018",
@@ -24,19 +15,9 @@
     "activeYear": 2018
   },
   {
-    "text": "Displaying the vertical stacked bars for 2019",
-    "type": "vertical",
-    "activeYear": 2019
-  },
-  {
     "text": "Displaying the districts for 2019",
     "type": "svgmap",
     "activeYear": 2019
-  },
-  {
-    "text": "Displaying the vertical stacked bars for 2020",
-    "type": "vertical",
-    "activeYear": 2020
   },
   {
     "text": "Displaying the districts for 2020",
