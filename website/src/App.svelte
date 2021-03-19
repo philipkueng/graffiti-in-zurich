@@ -10,29 +10,25 @@
     return data.find(stats => stats.year === activeYear);
   }
 
-  function changeIndex(method, activeYear) {
-    if (method === "minus") {
-      if (activeYear === 2018) return;
-      console.log("sub");
-      activeYear -= 1;
-    } else {
-      if (activeYear === 2020) return;
-      console.log("add");
-      activeYear += 1;
-      console.log(activeYear);
-    }
+  function getText(texts, activeYear) {
+    let text = texts.find(text => text.year === activeYear);
+    if (text) return text.text;
   }
 </script>
 
 <style>
   .zueri-flagge {
-    width: 100%;
+    width: 60px;
+    height: 60px;
+    margin-right: 16px;
+    display: inline-flex;
     background: linear-gradient(
       to top right,
       #268bcc calc(50% - 1px),
       #268bcc,
       white calc(50% + 1px)
     );
+    border: 1px solid #268bcc;
   }
 
   main {
@@ -41,31 +37,34 @@
   }
   .active-year {
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.3em;
+    text-decoration: underline;
   }
 
   .header {
     font-family: StreetWars;
     font-size: 6em;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
 
   .texts {
     text-align: left;
-    width: 100%;
-    width: 49%;
-    margin-top: 10px;
+    width: 40%;
+    margin-top: 76px;
     font-family: "Roboto";
+    line-height: 25px;
   }
 
   .slider-container {
     display: flex;
     flex-direction: row;
     align-items: baseline;
-    justify-content: center;
+    justify-content: space-around;
     font-family: Roboto;
     font-size: 1.5em;
+    width: 60%;
+    margin-bottom: 4px;
   }
 
   .component-container {
@@ -81,7 +80,11 @@
   }
 
   .map {
-    width: 49%;
+    width: 44%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
   }
 
   .related-info {
@@ -92,14 +95,14 @@
   }
 </style>
 
-<main class="zueri-flagge">
-  <div class="header">Graffiti in Zuerich</div>
+<main class="">
+  <div class="header">
+    <div class="zueri-flagge" />
+    Graffiti in der Stadt Zuerich*
+  </div>
   <div class="component-container">
     <div class="map">
       <div class="slider-container">
-        <div class="slider" on:click={() => changeIndex('minus', activeYear)}>
-          &#60;
-        </div>
         {#each data as entry}
           <div
             class="slider"
@@ -108,14 +111,13 @@
             {entry.year}
           </div>
         {/each}
-        <div class="slider" on:click={() => changeIndex('plus', activeYear)}>
-          &#62;
-        </div>
       </div>
       <ColoredSvgMap data={getData(data, activeYear)} />
     </div>
     <div class="texts">
-      {@html texts.find(text => text.year === activeYear).text}
+      <p>
+        {@html getText(texts, activeYear)}
+      </p>
     </div>
   </div>
 </main>

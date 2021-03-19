@@ -5,7 +5,6 @@
     "districts": [
       {
         "name": "Kreis 1",
-        "color": "#d97551",
         "totalReports": 24,
         "coordinates": [
           {
@@ -108,7 +107,6 @@
       },
       {
         "name": "Kreis 2",
-        "color": "#d97551",
         "totalReports": 27,
         "coordinates": [
           {
@@ -223,7 +221,6 @@
       },
       {
         "name": "Kreis 3",
-        "color": "#e0d3b4",
         "totalReports": 10,
         "coordinates": [
           {
@@ -270,7 +267,6 @@
       },
       {
         "name": "Kreis 4",
-        "color": "#da9868",
         "totalReports": 19,
         "coordinates": [
           {
@@ -353,7 +349,6 @@
       },
       {
         "name": "Kreis 5",
-        "color": "#dbb78a",
         "totalReports": 13,
         "coordinates": [
           {
@@ -412,7 +407,6 @@
       },
       {
         "name": "Kreis 6",
-        "color": "#d64b47",
         "totalReports": 44,
         "coordinates": [
           {
@@ -595,7 +589,6 @@
       },
       {
         "name": "Kreis 7",
-        "color": "#e0d3b4",
         "totalReports": 9,
         "coordinates": [
           {
@@ -638,7 +631,6 @@
       },
       {
         "name": "Kreis 8",
-        "color": "#e0d3b4",
         "totalReports": 6,
         "coordinates": [
           {
@@ -669,7 +661,6 @@
       },
       {
         "name": "Kreis 9",
-        "color": "#dbb78a",
         "totalReports": 15,
         "coordinates": [
           {
@@ -736,7 +727,6 @@
       },
       {
         "name": "Kreis 10",
-        "color": "#dbb78a",
         "totalReports": 14,
         "coordinates": [
           {
@@ -799,7 +789,6 @@
       },
       {
         "name": "Kreis 11",
-        "color": "#da9868",
         "totalReports": 17,
         "coordinates": [
           {
@@ -874,7 +863,6 @@
       },
       {
         "name": "Kreis 12",
-        "color": "#edece1",
         "totalReports": 1,
         "coordinates": [
           {
@@ -939,7 +927,6 @@
     "districts": [
       {
         "name": "Kreis 1",
-        "color": "#d64b47",
         "totalReports": 71,
         "coordinates": [
           {
@@ -1230,7 +1217,6 @@
       },
       {
         "name": "Kreis 2",
-        "color": "#d97551",
         "totalReports": 54,
         "coordinates": [
           {
@@ -1453,7 +1439,6 @@
       },
       {
         "name": "Kreis 3",
-        "color": "#e0d3b4",
         "totalReports": 12,
         "coordinates": [
           {
@@ -1508,7 +1493,6 @@
       },
       {
         "name": "Kreis 4",
-        "color": "#e0d3b4",
         "totalReports": 15,
         "coordinates": [
           {
@@ -1575,7 +1559,6 @@
       },
       {
         "name": "Kreis 5",
-        "color": "#dbb78a",
         "totalReports": 21,
         "coordinates": [
           {
@@ -1666,7 +1649,6 @@
       },
       {
         "name": "Kreis 6",
-        "color": "#da9868",
         "totalReports": 36,
         "coordinates": [
           {
@@ -1817,7 +1799,6 @@
       },
       {
         "name": "Kreis 7",
-        "color": "#e0d3b4",
         "totalReports": 14,
         "coordinates": [
           {
@@ -1880,7 +1861,6 @@
       },
       {
         "name": "Kreis 8",
-        "color": "#e0d3b4",
         "totalReports": 17,
         "coordinates": [
           {
@@ -1955,7 +1935,6 @@
       },
       {
         "name": "Kreis 9",
-        "color": "#e0d3b4",
         "totalReports": 15,
         "coordinates": [
           {
@@ -2022,7 +2001,6 @@
       },
       {
         "name": "Kreis 10",
-        "color": "#dbb78a",
         "totalReports": 21,
         "coordinates": [
           {
@@ -2113,7 +2091,6 @@
       },
       {
         "name": "Kreis 11",
-        "color": "#da9868",
         "totalReports": 35,
         "coordinates": [
           {
@@ -2260,7 +2237,6 @@
       },
       {
         "name": "Kreis 12",
-        "color": "#edece1",
         "totalReports": 7,
         "coordinates": [
           {
@@ -2349,7 +2325,6 @@
     "districts": [
       {
         "name": "Kreis 1",
-        "color": "#d64b47",
         "totalReports": 82,
         "coordinates": [
           {
@@ -2684,7 +2659,6 @@
       },
       {
         "name": "Kreis 2",
-        "color": "#d97551",
         "totalReports": 61,
         "coordinates": [
           {
@@ -3010,7 +2984,6 @@
       },
       {
         "name": "Kreis 4",
-        "color": "#e0d3b4",
         "totalReports": 12,
         "coordinates": [
           {
@@ -3065,7 +3038,6 @@
       },
       {
         "name": "Kreis 5",
-        "color": "#e0d3b4",
         "totalReports": 13,
         "coordinates": [
           {
@@ -3124,7 +3096,6 @@
       },
       {
         "name": "Kreis 6",
-        "color": "#dbb78a",
         "totalReports": 21,
         "coordinates": [
           {
@@ -3215,7 +3186,6 @@
       },
       {
         "name": "Kreis 7",
-        "color": "#e0d3b4",
         "totalReports": 11,
         "coordinates": [
           {
@@ -3266,7 +3236,6 @@
       },
       {
         "name": "Kreis 8",
-        "color": "#da9868",
         "totalReports": 30,
         "coordinates": [
           {
@@ -3393,7 +3362,6 @@
       },
       {
         "name": "Kreis 9",
-        "color": "#e0d3b4",
         "totalReports": 10,
         "coordinates": [
           {
@@ -3440,7 +3408,6 @@
       },
       {
         "name": "Kreis 10",
-        "color": "#e0d3b4",
         "totalReports": 17,
         "coordinates": [
           {
@@ -3515,7 +3482,6 @@
       },
       {
         "name": "Kreis 11",
-        "color": "#d97551",
         "totalReports": 65,
         "coordinates": [
           {
@@ -3782,7 +3748,6 @@
       },
       {
         "name": "Kreis 12",
-        "color": "#edece1",
         "totalReports": 5,
         "coordinates": [
           {

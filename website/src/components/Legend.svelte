@@ -23,9 +23,10 @@
 
 <style>
   .legend {
-    width: 30%;
+    width: 50%;
     display: flex;
     justify-content: center;
+    margin-bottom: 8px;
   }
 
   .legend-container {

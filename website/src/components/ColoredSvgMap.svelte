@@ -7,7 +7,7 @@
 
 <style>
   .map-container {
-    height: 60%;
+    width: 75%;
     display: flex;
     flex-direction: column;
     align-items: center;
