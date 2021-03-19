@@ -38,7 +38,6 @@
   .active-year {
     font-weight: bold;
     font-size: 1.3em;
-    text-decoration: underline;
   }
 
   .header {
